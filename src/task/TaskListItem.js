@@ -7,11 +7,11 @@ const TaskListItem = ({ task }) => {
   return (
     <div className="task-list-item">
       <div className="task-list-item-prefix">
-        <TaskItemStatus status={task.status} />
+        <TaskItemStatus task={task} />
       </div>
       <div className="task-list-item-content">{task.title}</div>
       <div className="task-list-item-sufix">
-        <TaskItemImportant important={task.important} />
+        <TaskItemImportant task={task} />
       </div>
     </div>
   );

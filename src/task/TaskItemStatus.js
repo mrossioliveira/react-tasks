@@ -1,7 +1,7 @@
 import React from 'react';
 
-const TaskItemStatus = ({ status }) => {
-  return <div>{status === 'OPEN' ? 'TODO' : status}</div>;
+const TaskItemStatus = ({ task }) => {
+  return <div>{task.status === 'OPEN' ? 'TODO' : task.status}</div>;
 };
 
 export default TaskItemStatus;
