@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  height: 100vh;
+  background: #202122;
+}
+
+.navbar {
+  background: #2a2d2f;
+}
+
+.content {
+  flex: 1;
+  padding: 16px;
+}
