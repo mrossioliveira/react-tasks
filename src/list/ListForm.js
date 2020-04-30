@@ -15,8 +15,10 @@ const ListForm = () => {
   const createList = (event) => {
     if (event.keyCode === KEYCODE_ENTER) {
       event.preventDefault();
-      dispatch({ type: 'add', payload: event.target.value });
-      setTitle('');
+      if (event.target.value.trim().length > 0) {
+        dispatch({ type: 'add', payload: event.target.value });
+        setTitle('');
+      }
     } else if (event.keyCode === KEYCODE_ESCAPE) {
       setTitle('');
     }
@@ -26,7 +28,7 @@ const ListForm = () => {
     <form>
       <input
         className="transparent-input"
-        placeholder="Add a list"
+        placeholder="New list"
         maxLength="120"
         value={title}
         onChange={upadteTitle}

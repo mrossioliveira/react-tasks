@@ -1,3 +1,4 @@
+@import './colors.css';
 @import './animations.css';
 
 body {
@@ -7,6 +8,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: whitesmoke;
 }
 
 code {
@@ -29,8 +31,7 @@ code {
 }
 
 .list-view-title {
-  color: whitesmoke;
   font-size: 20px;
-  font-weight: bolder;
+  font-weight: 300;
   margin-bottom: 16px;
 }

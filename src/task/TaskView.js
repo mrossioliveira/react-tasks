@@ -7,14 +7,18 @@ const TaskView = () => {
   const { taskState } = useContext(TasksContext);
   const { listState } = useContext(ListsContext);
 
+  let titleStyle = 'list-view-title';
+
   let tasks = [];
   if (listState.selectedList) {
     if (listState.selectedList.id < 0) {
       if (listState.selectedList.id === -1) {
         // important
+        titleStyle = 'list-view-title color-accent';
         tasks = [...taskState.tasks.filter((task) => task.important)];
       } else {
         // tasks
+        titleStyle = 'list-view-title color-primary';
         tasks = [...taskState.tasks.filter((task) => task.list === null)];
       }
     } else {
@@ -29,7 +33,7 @@ const TaskView = () => {
 
   return (
     <React.Fragment>
-      <div className="list-view-title">
+      <div className={titleStyle}>
         {listState.selectedList && listState.selectedList.title}
       </div>
       {taskState.loading ? (

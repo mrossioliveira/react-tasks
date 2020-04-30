@@ -11,6 +11,7 @@ import {
   faCircle,
   faCheckCircle,
   faPlus,
+  faList,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -19,5 +20,6 @@ library.add(
   faCircle,
   faCircleRegular,
   faCheckCircle,
-  faPlus
+  faPlus,
+  faList
 );
