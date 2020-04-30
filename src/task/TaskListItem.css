@@ -26,6 +26,7 @@
 
 .task-list-item-content {
   animation: strike 1s ease;
+  flex: 1;
 }
 
 .task-list-item-check-icon:hover {
@@ -46,10 +47,6 @@
 .task-list-item-important-icon-checked {
   cursor: pointer;
   color: yellow;
-}
-
-.task-list-item-content-spacer {
-  flex: 1;
 }
 
 .task-list-item-text-done {

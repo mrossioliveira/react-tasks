@@ -72,7 +72,7 @@ const Navbar = () => {
       </div>
       <MenuItemDivider />
       <div className="navbar-footer">
-        <div className="item-content">
+        <div className="navbar-footer-form">
           <ListForm />
         </div>
       </div>
