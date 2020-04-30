@@ -1,16 +1,67 @@
 import React, { useEffect, useReducer } from 'react';
-import axios from 'axios';
+import PropTypes from 'prop-types';
 
-import TOKEN from '../token';
+import TasksApi from './TasksApi';
 
-const initialState = {
-  tasks: [],
-};
+function _getTaskIndex(state, task) {
+  const index = state.tasks.map((it) => it.id).indexOf(task.id);
+  return index;
+}
 
 function reducer(state, action) {
   switch (action.type) {
     case 'load':
-      return { tasks: action.payload };
+      return { ...state, loading: true };
+    case 'load_success':
+      return { ...state, loading: false, tasks: action.payload };
+    case 'load_failure':
+      return { ...state, loading: false };
+
+    case 'updateImportant': {
+      const updatedTask = {
+        ...action.payload,
+        important: action.payload.important ? false : true,
+      };
+
+      let updatedTasks = [...state.tasks];
+      updatedTasks.splice(_getTaskIndex(state, action.payload), 1, updatedTask);
+
+      return { ...state, tasks: updatedTasks };
+    }
+
+    case 'updateImportantError': {
+      let updatedTasks = [...state.tasks];
+      updatedTasks.splice(
+        _getTaskIndex(state, action.payload),
+        1,
+        action.payload
+      );
+
+      return { ...state, tasks: updatedTasks };
+    }
+
+    case 'updateStatus': {
+      const updatedTask = {
+        ...action.payload,
+        status: action.payload.status === 'OPEN' ? 'DONE' : 'OPEN',
+      };
+
+      let updatedTasks = [...state.tasks];
+      updatedTasks.splice(_getTaskIndex(state, action.payload), 1, updatedTask);
+
+      return { ...state, tasks: updatedTasks };
+    }
+
+    case 'updateStatusError': {
+      let updatedTasks = [...state.tasks];
+      updatedTasks.splice(
+        _getTaskIndex(state, action.payload),
+        1,
+        action.payload
+      );
+
+      return { ...state, tasks: updatedTasks };
+    }
 
     default:
       throw new Error('TaskContext invalid action');
@@ -20,6 +71,10 @@ function reducer(state, action) {
 export const TasksContext = React.createContext();
 
 export const TasksProvider = (props) => {
+  const initialState = {
+    loading: true,
+    tasks: [],
+  };
   const [state, dispatch] = useReducer(reducer, initialState);
 
   /**
@@ -27,26 +82,24 @@ export const TasksProvider = (props) => {
    */
   useEffect(() => {
     async function loadData() {
+      dispatch({ type: 'load' });
+      var api = new TasksApi();
       // get all lists and tasks
-      try {
-        const headers = { Authorization: 'Bearer ' + TOKEN };
-        const URL = 'http://localhost:8090/tasks';
+      const tasks = await api.find();
 
-        // custom user lists
-        const response = await axios.get(URL, { headers });
-
-        // load lists
-        dispatch({ type: 'load', payload: response.data });
-      } catch (error) {
-        console.error(error);
-      }
+      // load lists
+      dispatch({ type: 'load_success', payload: tasks });
     }
     loadData();
   }, []);
 
   return (
-    <TasksContext.Provider value={{ taskState: state }}>
+    <TasksContext.Provider value={{ taskState: state, dispatch }}>
       {props.children}
     </TasksContext.Provider>
   );
+};
+
+TasksProvider.propTypes = {
+  children: PropTypes.object,
 };

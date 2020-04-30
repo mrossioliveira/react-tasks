@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import './MenuItem.css';
+
 import { ListsContext } from '../list/ListsContext';
+import PropTypes from 'prop-types';
 
 const MenuItem = ({ id, title, counter }) => {
   const { listState, dispatch } = useContext(ListsContext);
@@ -17,6 +19,12 @@ const MenuItem = ({ id, title, counter }) => {
       <div className="item-sufix">{counter > 0 ? counter : null}</div>
     </div>
   );
+};
+
+MenuItem.propTypes = {
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  counter: PropTypes.number,
 };
 
 export default MenuItem;

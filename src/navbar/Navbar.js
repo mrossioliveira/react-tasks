@@ -29,7 +29,8 @@ const Navbar = () => {
       // custom list
       list.counter = taskState.tasks
         .filter((task) => task.list !== null)
-        .filter((task) => task.list.id === list.id).length;
+        .filter((task) => task.list.id === list.id)
+        .filter((task) => task.status === 'OPEN').length;
     }
   });
 

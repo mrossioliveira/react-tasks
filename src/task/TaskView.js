@@ -29,7 +29,7 @@ const TaskView = () => {
 
   return (
     <React.Fragment>
-      <TaskList tasks={tasks} />
+      {taskState.loading ? <div>...loading</div> : <TaskList tasks={tasks} />}
     </React.Fragment>
   );
 };

@@ -2,6 +2,7 @@ import React from 'react';
 import './TaskListItem.css';
 import TaskItemStatus from './TaskItemStatus';
 import TaskItemImportant from './TaskItemImportant';
+import PropTypes from 'prop-types';
 
 const TaskListItem = ({ task }) => {
   return (
@@ -15,6 +16,10 @@ const TaskListItem = ({ task }) => {
       </div>
     </div>
   );
+};
+
+TaskListItem.propTypes = {
+  task: PropTypes.object.isRequired,
 };
 
 export default TaskListItem;

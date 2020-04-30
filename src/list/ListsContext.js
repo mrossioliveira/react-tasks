@@ -1,4 +1,5 @@
 import React, { useEffect, useReducer } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import TOKEN from '../token';
@@ -13,13 +14,14 @@ const initialState = {
 
 function reducer(state, action) {
   switch (action.type) {
-    case 'load':
+    case 'load': {
       const lists = action.payload;
 
       return {
         lists: lists,
         selectedList: lists.length > 2 ? lists[2] : lists[1],
       };
+    }
 
     case 'select':
       return {
@@ -27,12 +29,13 @@ function reducer(state, action) {
         selectedList: state.lists.find((list) => list.id === action.payload),
       };
 
-    case 'add':
+    case 'add': {
       let updatedLists = [...state.lists];
       const newList = { id: Math.random(), title: action.payload, counter: 0 };
       updatedLists.push(newList);
 
       return { ...state, lists: updatedLists, selectedList: newList };
+    }
 
     default:
       throw new Error('Invalid action');
@@ -86,4 +89,8 @@ export const ListsProvider = (props) => {
       {props.children}
     </ListsContext.Provider>
   );
+};
+
+ListsProvider.propTypes = {
+  children: PropTypes.object,
 };
