@@ -40,7 +40,7 @@ export default class TasksApi {
       const URL = `http://localhost:3000/tasks/${task.id}/status`;
 
       const payload = {
-        important: task.status === 'OPEN' ? 'DONE' : 'OPEN',
+        status: task.status === 'OPEN' ? 'DONE' : 'OPEN',
       };
       await axios.patch(URL, payload, { headers });
     } catch (error) {

@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { TasksContext } from './TasksContext';
 import PropTypes from 'prop-types';
 import TasksApi from './TasksApi';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import './TaskItemImportant.css';
 
 const TaskItemImportant = ({ task }) => {
   const { dispatch } = useContext(TasksContext);
@@ -16,7 +18,12 @@ const TaskItemImportant = ({ task }) => {
 
   return (
     <div onClick={handleChanges}>
-      {task.important.toString() === 'true' ? '*' : '.'}
+      <FontAwesomeIcon
+        icon={[task.important ? 'fas' : 'far', 'star']}
+        className={
+          task.important ? 'task-item-important-yes' : 'task-item-important-no'
+        }
+      />
     </div>
   );
 };

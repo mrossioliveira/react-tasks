@@ -1,0 +1,21 @@
+.task-item-status-yes {
+  animation: bounce 350ms ease-in-out;
+  transition: all 1s ease;
+  color: #448aff;
+}
+
+.task-item-status-yes:hover {
+  transition: all 300ms ease;
+  color: #6ba0fc;
+}
+
+.task-item-status-no {
+  animation: bounceBack 350ms ease-in-out;
+  transition: all 300ms ease;
+  color: #666666;
+}
+
+.task-item-status-no:hover {
+  transition: all 300ms ease;
+  color: #cccccc;
+}
