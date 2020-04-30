@@ -19,6 +19,7 @@ const TaskItemImportant = ({ task }) => {
   return (
     <div onClick={handleChanges}>
       <FontAwesomeIcon
+        size="lg"
         icon={[task.important ? 'fas' : 'far', 'star']}
         className={
           task.important ? 'task-item-important-yes' : 'task-item-important-no'

@@ -10,6 +10,14 @@ import {
   faStar,
   faCircle,
   faCheckCircle,
+  faPlus,
 } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faStar, faStarRegular, faCircle, faCircleRegular, faCheckCircle);
+library.add(
+  faStar,
+  faStarRegular,
+  faCircle,
+  faCircleRegular,
+  faCheckCircle,
+  faPlus
+);

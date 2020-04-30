@@ -21,9 +21,11 @@
 }
 
 .task-list-item-prefix {
-  position: relative;
-  top: 2px;
   margin-right: 16px;
+}
+
+.task-list-item-content {
+  animation: strike 1s ease;
 }
 
 .task-list-item-check-icon:hover {
@@ -46,7 +48,7 @@
   color: yellow;
 }
 
-.task-list-item-content {
+.task-list-item-content-spacer {
   flex: 1;
 }
 

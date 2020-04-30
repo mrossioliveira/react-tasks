@@ -19,6 +19,7 @@ const TaskItemStatus = ({ task }) => {
   return (
     <div onClick={handleChanges}>
       <FontAwesomeIcon
+        size="lg"
         icon={
           task.status === 'DONE' ? ['fas', 'check-circle'] : ['far', 'circle']
         }

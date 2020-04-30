@@ -33,3 +33,28 @@
     transform: scale(1);
   }
 }
+
+@keyframes strike {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+.strike {
+  position: relative;
+}
+.strike::after {
+  content: ' ';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 1px;
+  background: #aaaaaa;
+  animation-name: strike;
+  animation-duration: 200ms;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
