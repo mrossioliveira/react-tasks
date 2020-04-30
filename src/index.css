@@ -28,4 +28,9 @@ code {
   outline: none;
 }
 
-
+.list-view-title {
+  color: whitesmoke;
+  font-size: 20px;
+  font-weight: bolder;
+  margin-bottom: 16px;
+}
