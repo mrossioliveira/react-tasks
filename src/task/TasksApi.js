@@ -19,6 +19,20 @@ export default class TasksApi {
     }
   }
 
+  async create(task, dispatch) {
+    try {
+      const headers = { Authorization: 'Bearer ' + TOKEN };
+      const URL = `http://localhost:3000/tasks`;
+      const response = await axios.post(URL, task, { headers });
+
+      dispatch({ type: 'addTask', payload: response.data });
+      return true;
+    } catch (error) {
+      dispatch({ type: 'addTaskError' });
+      return false;
+    }
+  }
+
   async updateImportant(task, dispatch) {
     try {
       const headers = { Authorization: 'Bearer ' + TOKEN };

@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { TasksContext } from './TasksContext';
 import { ListsContext } from '../list/ListsContext';
+import TasksApi from './TasksApi';
 
 const KEYCODE_ENTER = 13;
 const KEYCODE_ESCAPE = 27;
@@ -19,15 +20,23 @@ const TaskForm = () => {
     if (event.keyCode === KEYCODE_ENTER) {
       event.preventDefault();
       if (event.target.value.trim().length > 0) {
-        const newTask = {
-          id: Math.random(),
+        let listId = null;
+        if (listState.selectedList) {
+          listId = listState.selectedList.id;
+        }
+
+        const payload = {
           title: event.target.value,
+          description: '',
           status: 'OPEN',
-          important: listState.selectedList.id === -1,
-          list: listState.selectedList || null,
+          important: listId === -1,
+          listId: listId > 0 ? listId : null,
         };
-        dispatch({ type: 'add', payload: newTask });
-        setTitle('');
+
+        const successful = new TasksApi().create(payload, dispatch);
+        if (successful) {
+          setTitle('');
+        }
       }
     } else if (event.keyCode === KEYCODE_ESCAPE) {
       setTitle('');

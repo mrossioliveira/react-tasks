@@ -22,8 +22,6 @@ export default class ListsApi {
       const URL = `http://localhost:3000/lists`;
       const response = await axios.post(URL, { title }, { headers });
 
-      console.log(response.data);
-
       dispatch({ type: 'addList', payload: response.data });
       return true;
     } catch (error) {

@@ -22,13 +22,17 @@ const TaskView = () => {
       } else {
         // tasks
         titleStyle = 'list-view-title color-primary';
-        tasks = [...taskState.tasks.filter((task) => task.list === null)];
+        tasks = [
+          ...taskState.tasks.filter(
+            (task) => task.list === null || task.list === undefined
+          ),
+        ];
       }
     } else {
       // user list
       tasks = [
         ...taskState.tasks
-          .filter((task) => task.list !== null)
+          .filter((task) => task.list !== null && task.list !== undefined)
           .filter((task) => task.list.id === listState.selectedList.id),
       ];
     }

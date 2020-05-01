@@ -63,14 +63,14 @@ function reducer(state, action) {
       return { ...state, tasks: updatedTasks };
     }
 
-    case 'add': {
+    case 'addTask': {
       let updatedTasks = [...state.tasks];
       updatedTasks.push(action.payload);
       return { ...state, tasks: updatedTasks };
     }
 
     default:
-      throw new Error('TasksContext: invalid action');
+      throw new Error(`TasksContext: ${action.type} is not a valid action`);
   }
 }
 

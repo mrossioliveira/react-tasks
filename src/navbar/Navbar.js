@@ -22,13 +22,15 @@ const Navbar = () => {
       } else {
         // tasks
         list.counter = taskState.tasks.filter(
-          (task) => task.list === null && task.status === 'OPEN'
+          (task) =>
+            (task.list === null || task.list === undefined) &&
+            task.status === 'OPEN'
         ).length;
       }
     } else {
       // custom list
       list.counter = taskState.tasks
-        .filter((task) => task.list !== null)
+        .filter((task) => task.list !== null && task.list !== undefined)
         .filter((task) => task.list.id === list.id)
         .filter((task) => task.status === 'OPEN').length;
     }
