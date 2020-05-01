@@ -22,6 +22,11 @@
 .navbar-items {
   display: flex;
   flex-flow: column;
+  overflow-y: auto;
+}
+
+.navbar-spacer {
+  flex: 1;
 }
 
 .navbar-footer {
@@ -32,7 +37,7 @@
   background: #2f3234;
   color: rgb(199, 199, 199);
   border-radius: 4px;
-  margin: 16px 16px;
+  margin: 0px 16px 16px 16px;
 }
 
 .navbar-footer-form {

@@ -4,7 +4,7 @@
   flex-flow: row;
   align-items: center;
   padding: 12px 16px;
-  background: #292b2c;
+  background: #2a2d2f;
   color: rgb(199, 199, 199);
   margin-bottom: 4px;
   border-radius: 4px;
@@ -12,12 +12,12 @@
 
 .task-list-item:hover {
   transition: all 200ms ease;
-  background: #35393a;
+  background: #2f3234;
   cursor: pointer;
 }
 
 .task-list-item-selected {
-  background: #35393a;
+  background: #2a2d2f;
 }
 
 .task-list-item-prefix {

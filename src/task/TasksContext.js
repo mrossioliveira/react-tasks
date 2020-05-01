@@ -63,8 +63,14 @@ function reducer(state, action) {
       return { ...state, tasks: updatedTasks };
     }
 
+    case 'add': {
+      let updatedTasks = [...state.tasks];
+      updatedTasks.push(action.payload);
+      return { ...state, tasks: updatedTasks };
+    }
+
     default:
-      throw new Error('TaskContext invalid action');
+      throw new Error('TasksContext: invalid action');
   }
 }
 

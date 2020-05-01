@@ -56,9 +56,7 @@ const Navbar = () => {
               counter={list.counter}
             />
           ))}
-      </div>
-      <MenuItemDivider />
-      <div className="navbar-items">
+        <MenuItemDivider />
         {listState.lists
           .filter((list) => list.id > 0)
           .map((list) => (
@@ -70,6 +68,7 @@ const Navbar = () => {
             />
           ))}
       </div>
+      <div className="navbar-spacer"></div>
       <MenuItemDivider />
       <div className="navbar-footer">
         <div className="navbar-footer-form">

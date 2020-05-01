@@ -29,16 +29,15 @@ function reducer(state, action) {
         selectedList: state.lists.find((list) => list.id === action.payload),
       };
 
-    case 'add': {
+    case 'addList': {
       let updatedLists = [...state.lists];
-      const newList = { id: Math.random(), title: action.payload, counter: 0 };
-      updatedLists.push(newList);
+      updatedLists.push(action.payload);
 
-      return { ...state, lists: updatedLists, selectedList: newList };
+      return { ...state, lists: updatedLists, selectedList: action.payload };
     }
 
     default:
-      throw new Error('Invalid action');
+      throw new Error('ListsContext: Invalid action');
   }
 }
 
