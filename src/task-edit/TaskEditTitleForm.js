@@ -4,12 +4,10 @@ import { TasksContext } from '../task/TasksContext';
 import PropTypes from 'prop-types';
 import TasksApi from '../task/TasksApi';
 
-// import _ from 'lodash';
-
 const KEYCODE_ENTER = 13;
 const KEYCODE_ESCAPE = 27;
 
-const TaskEditForm = ({ task }) => {
+const TaskEditTitleForm = ({ task }) => {
   const { dispatch, taskState } = useContext(TasksContext);
 
   const [title, setTitle] = useState(task.title);
@@ -30,6 +28,13 @@ const TaskEditForm = ({ task }) => {
     }
   };
 
+  const onBlur = (event) => {
+    if (event.target.value.trim().length > 0) {
+      task.title = event.target.value;
+      new TasksApi().update(task, dispatch);
+    }
+  };
+
   const updateTitle = (event) => {
     setTitle(event.target.value);
   };
@@ -44,14 +49,15 @@ const TaskEditForm = ({ task }) => {
           value={title}
           onChange={updateTitle}
           onKeyDown={onUpdateTitle}
+          onBlur={onBlur}
         />
       </form>
     )
   );
 };
 
-TaskEditForm.propTypes = {
+TaskEditTitleForm.propTypes = {
   task: PropTypes.object.isRequired,
 };
 
-export default TaskEditForm;
+export default TaskEditTitleForm;

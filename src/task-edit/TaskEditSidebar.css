@@ -11,14 +11,14 @@
 .task-edit-sidebar-closed {
   transition: all 350ms ease-in-out;
   width: 0px;
-  transform: translateX(600px);
-  opacity: 0.5;
+  /* transform: translateX(600px); */
+  opacity: 0;
 }
 
 .task-edit-sidebar-open {
   transition: all 350ms ease-in-out;
   width: 600px;
-  transform: translateX(0px);
+  /* transform: translateX(0px); */
   opacity: 1;
 }
 

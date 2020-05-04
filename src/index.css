@@ -40,6 +40,16 @@ form {
   margin-bottom: 16px;
 }
 
+.notes-area {
+  height: 200px;
+  overflow-y: auto;
+  resize: none;
+}
+
+.p16 {
+  padding: 16px;
+}
+
 .mr16 {
   margin-right: 16px;
 }

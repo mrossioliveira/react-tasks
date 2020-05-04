@@ -4,11 +4,14 @@ import './TaskEditSidebar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { TasksContext } from '../task/TasksContext';
-import TaskEditForm from './TaskEditForm';
+import TaskEditTitleForm from './TaskEditTitleForm';
 import TasksApi from '../task/TasksApi';
 import TaskItemStatus from '../task/TaskItemStatus';
 import TaskItemImportant from '../task/TaskItemImportant';
 import VerticalSpacer from '../components/VerticalSpacer';
+
+import * as moment from 'moment';
+import TaskEditNotesForm from './TaskEditNotesForm';
 
 const TaskEditSidebar = () => {
   const { dispatch, taskState } = useContext(TasksContext);
@@ -37,7 +40,7 @@ const TaskEditSidebar = () => {
             <div className="mr16">
               <TaskItemStatus task={taskState.selectedTask} />
             </div>
-            <TaskEditForm task={taskState.selectedTask} />
+            <TaskEditTitleForm task={taskState.selectedTask} />
             <div className="ml16">
               <TaskItemImportant task={taskState.selectedTask} />
             </div>
@@ -45,7 +48,14 @@ const TaskEditSidebar = () => {
           <VerticalSpacer />
         </React.Fragment>
       )}
+      {taskState.selectedTask && (
+        <div className="p16">
+          <TaskEditNotesForm task={taskState.selectedTask} />
+          <VerticalSpacer />
+        </div>
+      )}
       <div className="task-edit-sidebar-spacer"></div>
+      <VerticalSpacer />
       <div className="task-edit-sidebar-footer">
         <FontAwesomeIcon
           className="task-edit-sidebar-icon"
@@ -53,7 +63,11 @@ const TaskEditSidebar = () => {
           onClick={() => dispatch({ type: 'unselectTask' })}
         />
         <div className="color-darker">
-          {taskState.selectedTask && taskState.selectedTask.createdAt}
+          {taskState.selectedTask && (
+            <span>
+              created {moment(taskState.selectedTask.createdAt).fromNow()}
+            </span>
+          )}
         </div>
         <FontAwesomeIcon
           className="task-edit-sidebar-icon color-danger"
