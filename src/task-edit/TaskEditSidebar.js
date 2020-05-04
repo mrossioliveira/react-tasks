@@ -6,11 +6,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { TasksContext } from '../task/TasksContext';
 import TaskEditForm from './TaskEditForm';
 import TasksApi from '../task/TasksApi';
+import TaskItemStatus from '../task/TaskItemStatus';
+import TaskItemImportant from '../task/TaskItemImportant';
+import VerticalSpacer from '../components/VerticalSpacer';
 
 const TaskEditSidebar = () => {
   const { dispatch, taskState } = useContext(TasksContext);
 
-  function onTaskDelete(e) {
+  const onTaskDelete = (e) => {
     e.stopPropagation();
 
     // optimistic update in the UI
@@ -18,7 +21,7 @@ const TaskEditSidebar = () => {
 
     // database update
     new TasksApi().delete(taskState.selectedTask, dispatch);
-  }
+  };
 
   return (
     <div
@@ -28,9 +31,20 @@ const TaskEditSidebar = () => {
           : 'task-edit-sidebar task-edit-sidebar-closed'
       }
     >
-      <div className="task-edit-sidebar-header">
-        <TaskEditForm />
-      </div>
+      {taskState.selectedTask && (
+        <React.Fragment>
+          <div className="task-edit-sidebar-header">
+            <div className="mr16">
+              <TaskItemStatus task={taskState.selectedTask} />
+            </div>
+            <TaskEditForm task={taskState.selectedTask} />
+            <div className="ml16">
+              <TaskItemImportant task={taskState.selectedTask} />
+            </div>
+          </div>
+          <VerticalSpacer />
+        </React.Fragment>
+      )}
       <div className="task-edit-sidebar-spacer"></div>
       <div className="task-edit-sidebar-footer">
         <FontAwesomeIcon

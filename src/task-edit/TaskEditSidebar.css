@@ -11,13 +11,13 @@
 .task-edit-sidebar-closed {
   transition: all 350ms ease-in-out;
   width: 0px;
-  transform: translateX(480px);
+  transform: translateX(600px);
   opacity: 0.5;
 }
 
 .task-edit-sidebar-open {
   transition: all 350ms ease-in-out;
-  width: 480px;
+  width: 600px;
   transform: translateX(0px);
   opacity: 1;
 }
@@ -26,11 +26,8 @@
   display: flex;
   flex-flow: row;
   align-items: center;
-  padding: 12px 16px;
-  background: #2f3234;
-  color: rgb(199, 199, 199);
-  border-radius: 4px;
-  margin: 16px 16px;
+  justify-content: space-between;
+  padding: 16px;
 }
 
 .task-edit-sidebar-items {

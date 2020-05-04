@@ -33,6 +33,20 @@ export default class TasksApi {
     }
   }
 
+  async update(task, dispatch) {
+    try {
+      dispatch({ type: 'updateTask', payload: task });
+
+      const headers = { Authorization: 'Bearer ' + TOKEN };
+      const URL = `http://localhost:3000/tasks/${task.id}`;
+
+      await axios.patch(URL, task, { headers });
+    } catch (error) {
+      // rollback to unchanged task
+      dispatch({ type: 'updateImportantError', payload: task });
+    }
+  }
+
   async updateImportant(task, dispatch) {
     try {
       const headers = { Authorization: 'Bearer ' + TOKEN };

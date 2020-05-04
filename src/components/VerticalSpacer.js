@@ -2,7 +2,8 @@ import React from 'react';
 
 const VerticalSpacer = () => {
   const style = {
-    flex: 1,
+    width: '100%',
+    border: '1px solid #2f3234',
   };
 
   return <div style={style}></div>;

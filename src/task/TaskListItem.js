@@ -10,7 +10,8 @@ const TaskListItem = ({ task }) => {
   const { taskState, dispatch: tasksDispatch } = useContext(TasksContext);
   const { listState, dispatch: listsDispatch } = useContext(ListsContext);
 
-  function onTaskSelect() {
+  function onTaskSelect(e) {
+    e.stopPropagation();
     tasksDispatch({ type: 'selectTask', payload: task });
   }
 

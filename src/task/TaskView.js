@@ -3,11 +3,10 @@ import { TasksContext } from './TasksContext';
 import { ListsContext } from '../list/ListsContext';
 import TaskList from './TaskList';
 import TaskForm from './TaskForm';
-import MenuItemDivider from '../navbar/MenuItemDivider';
 import VerticalSpacer from '../components/VerticalSpacer';
 
 const TaskView = () => {
-  const { taskState } = useContext(TasksContext);
+  const { dispatch, taskState } = useContext(TasksContext);
   const { listState } = useContext(ListsContext);
 
   let titleStyle = 'list-view-title';
@@ -38,8 +37,12 @@ const TaskView = () => {
     }
   }
 
+  const style = {
+    height: '100%',
+  };
+
   return (
-    <React.Fragment>
+    <div style={style} onClick={() => dispatch({ type: 'unselectTask' })}>
       <div className={titleStyle}>
         {listState.selectedList && listState.selectedList.title}
       </div>
@@ -48,10 +51,9 @@ const TaskView = () => {
       ) : (
         <TaskList tasks={tasks} list={listState.selectedList} />
       )}
-      <MenuItemDivider />
       <VerticalSpacer />
       <TaskForm />
-    </React.Fragment>
+    </div>
   );
 };
 

@@ -26,7 +26,14 @@ function reducer(state, action) {
       let updatedTasks = [...state.tasks];
       updatedTasks.splice(_getTaskIndex(state, action.payload), 1, updatedTask);
 
-      return { ...state, tasks: updatedTasks };
+      let selectedTask = state.selectedTask;
+      if (state.selectedTask) {
+        if (state.selectedTask.id === action.payload.id) {
+          selectedTask = updatedTask;
+        }
+      }
+
+      return { ...state, tasks: updatedTasks, selectedTask };
     }
 
     case 'updateImportantError': {
@@ -49,7 +56,14 @@ function reducer(state, action) {
       let updatedTasks = [...state.tasks];
       updatedTasks.splice(_getTaskIndex(state, action.payload), 1, updatedTask);
 
-      return { ...state, tasks: updatedTasks };
+      let selectedTask = state.selectedTask;
+      if (state.selectedTask) {
+        if (state.selectedTask.id === action.payload.id) {
+          selectedTask = updatedTask;
+        }
+      }
+
+      return { ...state, tasks: updatedTasks, selectedTask };
     }
 
     case 'updateStatusError': {
@@ -75,6 +89,17 @@ function reducer(state, action) {
     case 'addTask': {
       let updatedTasks = [...state.tasks];
       updatedTasks.push(action.payload);
+      return { ...state, tasks: updatedTasks };
+    }
+
+    case 'updateTask': {
+      let updatedTasks = [...state.tasks];
+      updatedTasks.splice(
+        _getTaskIndex(state, action.payload),
+        1,
+        action.payload
+      );
+
       return { ...state, tasks: updatedTasks };
     }
 
