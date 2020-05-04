@@ -27,7 +27,7 @@ const MenuItem = ({ id, title, counter }) => {
       className={
         listState.selectedList.id === id ? 'item item-selected' : 'item'
       }
-      onClick={() => dispatch({ type: 'select', payload: id })}
+      onClick={() => dispatch({ type: 'selectList', payload: id })}
     >
       <div className="item-prefix">
         <FontAwesomeIcon

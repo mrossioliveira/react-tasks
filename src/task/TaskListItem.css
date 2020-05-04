@@ -16,8 +16,12 @@
   cursor: pointer;
 }
 
+.task-list-item-list-selector:hover {
+  text-decoration: underline;
+}
+
 .task-list-item-selected {
-  background: #2a2d2f;
+  background: #2f3234;
 }
 
 .task-list-item-prefix {

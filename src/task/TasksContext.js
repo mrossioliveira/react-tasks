@@ -63,10 +63,26 @@ function reducer(state, action) {
       return { ...state, tasks: updatedTasks };
     }
 
+    case 'selectTask': {
+      console.log('selecting task...', action.payload);
+      return { ...state, selectedTask: action.payload };
+    }
+
+    case 'unselectTask': {
+      return { ...state, selectedTask: null };
+    }
+
     case 'addTask': {
       let updatedTasks = [...state.tasks];
       updatedTasks.push(action.payload);
       return { ...state, tasks: updatedTasks };
+    }
+
+    case 'deleteTask': {
+      let updatedTasks = [
+        ...state.tasks.filter((task) => task.id !== state.selectedTask.id),
+      ];
+      return { ...state, tasks: updatedTasks, selectedTask: null };
     }
 
     default:
@@ -80,6 +96,7 @@ export const TasksProvider = (props) => {
   const initialState = {
     loading: true,
     tasks: [],
+    selectedTask: null,
   };
   const [state, dispatch] = useReducer(reducer, initialState);
 

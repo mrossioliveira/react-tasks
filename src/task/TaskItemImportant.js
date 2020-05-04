@@ -8,7 +8,9 @@ import './TaskItemImportant.css';
 const TaskItemImportant = ({ task }) => {
   const { dispatch } = useContext(TasksContext);
 
-  function handleChanges() {
+  function handleChanges(e) {
+    e.stopPropagation();
+    
     // optimistic update in the UI
     dispatch({ type: 'updateImportant', payload: task });
 

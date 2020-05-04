@@ -62,4 +62,16 @@ export default class TasksApi {
       dispatch({ type: 'updateStatusError', payload: task });
     }
   }
+
+  delete(task, dispatch) {
+    try {
+      const headers = { Authorization: 'Bearer ' + TOKEN };
+      const URL = `http://localhost:3000/tasks/${task.id}`;
+
+      axios.delete(URL, { headers });
+    } catch (error) {
+      // rollback to unchanged task
+      dispatch({ type: 'deleteTaskError', payload: task });
+    }
+  }
 }

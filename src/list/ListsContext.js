@@ -17,13 +17,21 @@ function reducer(state, action) {
     case 'load': {
       const lists = action.payload;
 
+      // try to find last selected list
+      let selectedList = lists.length > 2 ? lists[2] : lists[1];
+      const lastListId = localStorage.getItem('selectedListId');
+      if (lastListId !== undefined) {
+        selectedList = lists.find((list) => list.id === parseInt(lastListId));
+      }
+
       return {
         lists: lists,
-        selectedList: lists.length > 2 ? lists[2] : lists[1],
+        selectedList,
       };
     }
 
-    case 'select':
+    case 'selectList':
+      localStorage.setItem('selectedListId', action.payload);
       return {
         ...state,
         selectedList: state.lists.find((list) => list.id === action.payload),

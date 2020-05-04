@@ -7,6 +7,7 @@ import { ListsProvider } from './ListsContext';
 import { TasksProvider } from '../task/TasksContext';
 
 import TaskView from '../task/TaskView';
+import TaskEditSidebar from '../task-edit/TaskEditSidebar';
 
 const Home = () => {
   return (
@@ -17,6 +18,7 @@ const Home = () => {
           <div className="content">
             <TaskView />
           </div>
+          <TaskEditSidebar />
         </div>
       </ListsProvider>
     </TasksProvider>

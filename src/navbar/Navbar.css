@@ -6,6 +6,7 @@
   overflow-y: auto;
   overflow-x: hidden;
   border-right: 1px solid #1e2020;
+  background: #2a2d2f;
 }
 
 .navbar-header {

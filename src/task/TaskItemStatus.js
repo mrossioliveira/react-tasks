@@ -8,7 +8,9 @@ import './TaskItemStatus.css';
 const TaskItemStatus = ({ task }) => {
   const { dispatch } = useContext(TasksContext);
 
-  function handleChanges() {
+  function handleChanges(e) {
+    e.stopPropagation();
+    
     // optimistic update in the UI
     dispatch({ type: 'updateStatus', payload: task });
 

@@ -4,12 +4,30 @@ import TaskItemStatus from './TaskItemStatus';
 import TaskItemImportant from './TaskItemImportant';
 import PropTypes from 'prop-types';
 import { ListsContext } from '../list/ListsContext';
+import { TasksContext } from './TasksContext';
 
 const TaskListItem = ({ task }) => {
-  const { listState } = useContext(ListsContext);
+  const { taskState, dispatch: tasksDispatch } = useContext(TasksContext);
+  const { listState, dispatch: listsDispatch } = useContext(ListsContext);
+
+  function onTaskSelect() {
+    tasksDispatch({ type: 'selectTask', payload: task });
+  }
+
+  var isSelected = false;
+  if (taskState.selectedTask) {
+    if (taskState.selectedTask.id === task.id) {
+      isSelected = true;
+    }
+  }
 
   return (
-    <div className="task-list-item">
+    <div
+      className={
+        isSelected ? 'task-list-item task-list-item-selected' : 'task-list-item'
+      }
+      onClick={onTaskSelect}
+    >
       <div className="task-list-item-prefix">
         <TaskItemStatus task={task} />
       </div>
@@ -20,7 +38,15 @@ const TaskListItem = ({ task }) => {
         <br />
 
         {listState.selectedList && listState.selectedList.id === -1 ? (
-          <small className="color-darker">
+          <small
+            className="task-list-item-list-selector color-darker"
+            onClick={() =>
+              listsDispatch({
+                type: 'selectList',
+                payload: task.list ? task.list.id : -2,
+              })
+            }
+          >
             {task.list ? task.list.title : 'Tasks'}
           </small>
         ) : null}
