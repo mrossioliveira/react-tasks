@@ -78,7 +78,6 @@ function reducer(state, action) {
     }
 
     case 'selectTask': {
-      console.log('selecting task...', action.payload);
       return { ...state, selectedTask: action.payload };
     }
 

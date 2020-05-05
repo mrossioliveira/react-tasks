@@ -29,4 +29,18 @@ export default class ListsApi {
       return false;
     }
   }
+
+  delete(list, dispatch) {
+    try {
+      // optimistic update
+      dispatch({ type: 'deleteList' });
+
+      const headers = { Authorization: 'Bearer ' + TOKEN };
+      const URL = `http://localhost:3000/lists/${list.id}`;
+      axios.delete(URL, { headers });
+    } catch (error) {
+      // rollback changes
+      dispatch({ type: 'deleteListError', payload: list });
+    }
+  }
 }

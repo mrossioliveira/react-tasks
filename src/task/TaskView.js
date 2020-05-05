@@ -4,10 +4,14 @@ import { ListsContext } from '../list/ListsContext';
 import TaskList from './TaskList';
 import TaskForm from './TaskForm';
 import VerticalSpacer from '../components/VerticalSpacer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import './TaskView.css';
+import ListsApi from '../list/ListsApi';
 
 const TaskView = () => {
-  const { dispatch, taskState } = useContext(TasksContext);
-  const { listState } = useContext(ListsContext);
+  const { dispatch: taskDispatch, taskState } = useContext(TasksContext);
+  const { dispatch: listDispatch, listState } = useContext(ListsContext);
 
   let titleStyle = 'list-view-title';
 
@@ -37,14 +41,35 @@ const TaskView = () => {
     }
   }
 
-  const style = {
+  const onListDelete = () => {
+    if (
+      window.confirm(
+        'Are you sure you want to delete this list and all its tasks?'
+      )
+    ) {
+      new ListsApi().delete(listState.selectedList, listDispatch);
+    }
+  };
+
+  const containerStyle = {
     height: '100%',
   };
 
   return (
-    <div style={style} onClick={() => dispatch({ type: 'unselectTask' })}>
-      <div className={titleStyle}>
-        {listState.selectedList && listState.selectedList.title}
+    <div
+      style={containerStyle}
+      onClick={() => taskDispatch({ type: 'unselectTask' })}
+    >
+      <div className="list-view-header">
+        <div className={titleStyle}>
+          {listState.selectedList && listState.selectedList.title}
+        </div>
+        <div className="list-view-header-action" onClick={onListDelete}>
+          <FontAwesomeIcon
+            className="task-edit-sidebar-icon"
+            icon="trash-alt"
+          />
+        </div>
       </div>
       {taskState.loading ? (
         <div>...loading</div>

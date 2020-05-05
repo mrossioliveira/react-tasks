@@ -1,0 +1,21 @@
+.list-view-header {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-view-header-action {
+  transition: all 200ms ease;
+  padding: 12px 22px;
+  background: #2a2d2f;
+  color: rgb(199, 199, 199);
+  margin-bottom: 4px;
+  border-radius: 4px;
+}
+
+.list-view-header-action:hover {
+  transition: all 200ms ease;
+  background: #2f3234;
+  cursor: pointer;
+}

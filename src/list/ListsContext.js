@@ -20,7 +20,7 @@ function reducer(state, action) {
       // try to find last selected list
       let selectedList = lists.length > 2 ? lists[2] : lists[1];
       const lastListId = localStorage.getItem('selectedListId');
-      if (lastListId !== undefined) {
+      if (lastListId !== null && lastListId !== undefined) {
         selectedList = lists.find((list) => list.id === parseInt(lastListId));
       }
 
@@ -42,6 +42,24 @@ function reducer(state, action) {
       updatedLists.push(action.payload);
 
       return { ...state, lists: updatedLists, selectedList: action.payload };
+    }
+
+    case 'deleteList': {
+      let updatedLists = [...state.lists].filter(
+        (list) => list.id !== state.selectedList.id
+      );
+
+      // update selected list
+      localStorage.setItem(
+        'selectedListId',
+        updatedLists[updatedLists.length - 1].id
+      );
+
+      return {
+        ...state,
+        lists: updatedLists,
+        selectedList: updatedLists[updatedLists.length - 1],
+      };
     }
 
     default:
