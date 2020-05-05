@@ -64,12 +64,14 @@ const TaskView = () => {
         <div className={titleStyle}>
           {listState.selectedList && listState.selectedList.title}
         </div>
-        <div className="list-view-header-action" onClick={onListDelete}>
-          <FontAwesomeIcon
-            className="task-edit-sidebar-icon"
-            icon="trash-alt"
-          />
-        </div>
+        {listState.selectedList && listState.selectedList.id > 0 && (
+          <div className="list-view-header-action" onClick={onListDelete}>
+            <FontAwesomeIcon
+              className="task-edit-sidebar-icon"
+              icon="trash-alt"
+            />
+          </div>
+        )}
       </div>
       {taskState.loading ? (
         <div>...loading</div>
