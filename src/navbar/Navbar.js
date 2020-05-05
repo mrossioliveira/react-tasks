@@ -39,13 +39,11 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <div className="navbar-header">
-        <div className="item-content">
-          <input
-            className="transparent-input"
-            placeholder="Search"
-            maxLength="120"
-          />
-        </div>
+        <input
+          className="transparent-input"
+          placeholder="Search"
+          maxLength="120"
+        />
       </div>
       <div className="navbar-items">
         {listState.lists

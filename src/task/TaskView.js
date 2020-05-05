@@ -3,11 +3,11 @@ import { TasksContext } from './TasksContext';
 import { ListsContext } from '../list/ListsContext';
 import TaskList from './TaskList';
 import TaskForm from './TaskForm';
-import VerticalSpacer from '../components/VerticalSpacer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './TaskView.css';
 import ListsApi from '../list/ListsApi';
+import VerticalSpacer from '../components/VerticalSpacer';
 
 const TaskView = () => {
   const { dispatch: taskDispatch, taskState } = useContext(TasksContext);
@@ -52,7 +52,12 @@ const TaskView = () => {
   };
 
   const containerStyle = {
+    display: 'flex',
+    flexFlow: 'column',
     height: '100%',
+    maxHeight: '100%',
+    overflowX: 'hidden',
+    overflowY: 'auto',
   };
 
   return (
@@ -78,7 +83,10 @@ const TaskView = () => {
       ) : (
         <TaskList tasks={tasks} list={listState.selectedList} />
       )}
-      <VerticalSpacer />
+      <div className="flex-spacer"></div>
+      <div className="mb-16">
+        <VerticalSpacer />
+      </div>
       <TaskForm />
     </div>
   );

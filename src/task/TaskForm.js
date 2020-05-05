@@ -43,17 +43,26 @@ const TaskForm = () => {
     }
   };
 
+  const style = {
+    padding: '12px 16px',
+    background: '#2f3234',
+    color: 'rgb(199, 199, 199)',
+    borderRadius: '4px',
+  };
+
   return (
-    <form>
-      <input
-        className="transparent-input"
-        placeholder="New task..."
-        maxLength="120"
-        value={title}
-        onChange={upadteTitle}
-        onKeyDown={createTask}
-      />
-    </form>
+    <div style={style}>
+      <form>
+        <input
+          className="transparent-input"
+          placeholder="New task"
+          maxLength="120"
+          value={title}
+          onChange={upadteTitle}
+          onKeyDown={createTask}
+        />
+      </form>
+    </div>
   );
 };
 

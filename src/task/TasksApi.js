@@ -15,7 +15,6 @@ export default class TasksApi {
       return response.data;
     } catch (error) {
       console.error(error);
-      this.dispatch({});
     }
   }
 
