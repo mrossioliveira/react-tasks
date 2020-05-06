@@ -10,7 +10,7 @@ const MenuItem = ({ id, title, counter }) => {
 
   let icon = {
     type: 'fas',
-    icon: 'list',
+    icon: 'tasks',
   };
   let iconColor = 'color-darker';
 
