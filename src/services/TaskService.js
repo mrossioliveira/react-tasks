@@ -1,11 +1,11 @@
 import axios from 'axios';
-import TOKEN from '../token';
+import { getToken } from './AuthService';
 
 export default class TaskService {
   async find() {
     // get all lists and tasks
     try {
-      const headers = { Authorization: 'Bearer ' + TOKEN };
+      const headers = { Authorization: 'Bearer ' + getToken() };
       const URL = 'http://localhost:8090/tasks';
 
       // custom user lists
@@ -19,7 +19,7 @@ export default class TaskService {
 
   async create(task, dispatch) {
     try {
-      const headers = { Authorization: 'Bearer ' + TOKEN };
+      const headers = { Authorization: 'Bearer ' + getToken() };
       const URL = `http://localhost:3000/tasks`;
       const response = await axios.post(URL, task, { headers });
 
@@ -35,7 +35,7 @@ export default class TaskService {
     try {
       dispatch({ type: 'updateTask', payload: task });
 
-      const headers = { Authorization: 'Bearer ' + TOKEN };
+      const headers = { Authorization: 'Bearer ' + getToken() };
       const URL = `http://localhost:3000/tasks/${task.id}`;
 
       await axios.patch(URL, task, { headers });
@@ -47,7 +47,7 @@ export default class TaskService {
 
   async updateImportant(task, dispatch) {
     try {
-      const headers = { Authorization: 'Bearer ' + TOKEN };
+      const headers = { Authorization: 'Bearer ' + getToken() };
       const URL = `http://localhost:3000/tasks/${task.id}/important`;
 
       const payload = {
@@ -62,7 +62,7 @@ export default class TaskService {
 
   async updateStatus(task, dispatch) {
     try {
-      const headers = { Authorization: 'Bearer ' + TOKEN };
+      const headers = { Authorization: 'Bearer ' + getToken() };
       const URL = `http://localhost:3000/tasks/${task.id}/status`;
 
       const payload = {
@@ -77,7 +77,7 @@ export default class TaskService {
 
   delete(task, dispatch) {
     try {
-      const headers = { Authorization: 'Bearer ' + TOKEN };
+      const headers = { Authorization: 'Bearer ' + getToken() };
       const URL = `http://localhost:3000/tasks/${task.id}`;
 
       axios.delete(URL, { headers });

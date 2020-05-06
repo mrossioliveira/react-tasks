@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import AuthService from '../../services/AuthService';
+import { AuthService } from '../../services/AuthService';
 import { useHistory } from 'react-router-dom';
 
 const LoginCard = () => {

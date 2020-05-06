@@ -1,8 +1,7 @@
 import React, { useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-
-import TOKEN from '../../token';
+import { getToken } from '../../services/AuthService';
 
 const IMPORTANT_KEY = -1;
 const TASKS_KEY = -2;
@@ -79,7 +78,9 @@ export const ListsProvider = (props) => {
     async function loadData() {
       // get all lists and tasks
       try {
-        const headers = { Authorization: 'Bearer ' + TOKEN };
+        const headers = {
+          Authorization: 'Bearer ' + getToken(),
+        };
         const LISTS_URL = 'http://localhost:8090/lists';
 
         // system lists (important and tasks)

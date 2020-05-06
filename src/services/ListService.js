@@ -1,10 +1,10 @@
 import axios from 'axios';
-import TOKEN from '../token';
+import { getToken } from './AuthService';
 
 export default class ListService {
   async find() {
     try {
-      const headers = { Authorization: 'Bearer ' + TOKEN };
+      const headers = { Authorization: 'Bearer ' + getToken() };
       const URL = 'http://localhost:8090/lists';
 
       const response = await axios.get(URL, { headers });
@@ -17,7 +17,7 @@ export default class ListService {
 
   async create(title, dispatch) {
     try {
-      const headers = { Authorization: 'Bearer ' + TOKEN };
+      const headers = { Authorization: 'Bearer ' + getToken() };
       const URL = `http://localhost:3000/lists`;
       const response = await axios.post(URL, { title }, { headers });
 
@@ -34,7 +34,7 @@ export default class ListService {
       // optimistic update
       dispatch({ type: 'deleteList' });
 
-      const headers = { Authorization: 'Bearer ' + TOKEN };
+      const headers = { Authorization: 'Bearer ' + getToken() };
       const URL = `http://localhost:3000/lists/${list.id}`;
       axios.delete(URL, { headers });
     } catch (error) {
