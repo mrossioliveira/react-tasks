@@ -18,8 +18,10 @@ const LoginCard = () => {
     setPassword(event.target.value);
   };
 
-  const onSubmit = async () => {
+  const onFormSubmit = async (event) => {
+    event.preventDefault();
     setLoading(true);
+    setError(null);
     try {
       const response = await new AuthService().signIn(username, password);
       if (response.status === 201) {
@@ -38,35 +40,36 @@ const LoginCard = () => {
   return (
     <div className="login-card bg-dark">
       <h2>.tasks</h2>
-      <div className="login-input-container">
-        <input
-          autoFocus
-          className="transparent-input"
-          placeholder="username"
-          maxLength="120"
-          value={username}
-          onChange={updateUsername}
-        />
-      </div>
-      <div className="login-input-container">
-        <input
-          type="password"
-          className="transparent-input"
-          placeholder="password"
-          maxLength="120"
-          value={password}
-          onChange={updatePassword}
-        />
-      </div>
-      <button
-        disabled={username.length === 0 || password.length === 0}
-        type="submit"
-        className="app-button bg-primary"
-        onClick={onSubmit}
-      >
-        {loading ? 'Loading...' : 'Sign in'}
-      </button>
-      {error && <div className="mt-16 color-danger">{error.message}</div>}
+      <form onSubmit={(event) => onFormSubmit(event)}>
+        <div className="login-input-container">
+          <input
+            autoFocus
+            className="transparent-input"
+            placeholder="username"
+            maxLength="120"
+            value={username}
+            onChange={updateUsername}
+          />
+        </div>
+        <div className="login-input-container">
+          <input
+            type="password"
+            className="transparent-input"
+            placeholder="password"
+            maxLength="120"
+            value={password}
+            onChange={updatePassword}
+          />
+        </div>
+        <button
+          disabled={username.length < 8 || password.length < 8}
+          type="submit"
+          className="app-button bg-primary"
+        >
+          {loading ? 'Loading...' : 'Sign in'}
+        </button>
+        {error && <div className="mt-16 color-danger">{error.message}</div>}
+      </form>
     </div>
   );
 };
