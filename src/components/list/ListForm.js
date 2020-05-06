@@ -1,11 +1,13 @@
 import React, { useState, useContext } from 'react';
 import { ListsContext } from './ListsContext';
 import ListService from '../../services/ListService';
+import { useHistory } from 'react-router-dom';
 
 const KEYCODE_ENTER = 13;
 const KEYCODE_ESCAPE = 27;
 
 const ListForm = () => {
+  const history = useHistory();
   const { dispatch } = useContext(ListsContext);
 
   const [title, setTitle] = useState('');
@@ -18,12 +20,13 @@ const ListForm = () => {
     if (event.keyCode === KEYCODE_ENTER) {
       event.preventDefault();
       if (event.target.value.trim().length > 0) {
-        const successful = new ListService().create(
+        const response = await new ListService().create(
           event.target.value,
           dispatch
         );
-        if (successful) {
+        if (response.status === 201) {
           setTitle('');
+          history.push(`/tasks/${response.data.id}`);
         }
       }
     } else if (event.keyCode === KEYCODE_ESCAPE) {

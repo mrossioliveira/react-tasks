@@ -38,8 +38,24 @@ const MenuItem = ({ id, title, counter }) => {
     history.push(`/tasks/${getSlug()}`);
   };
 
+  const isSelected = () => {
+    const parts = history.location.pathname.split('/');
+    const slug = parts[parts.length - 1];
+
+    if (id === -1) {
+      return slug === 'important';
+    } else if (id === -2) {
+      return slug === 'default';
+    } else {
+      return parseInt(slug) === id;
+    }
+  };
+
   return (
-    <div className="item" onClick={onSelect}>
+    <div
+      className={isSelected() ? 'item-selected item' : 'item'}
+      onClick={onSelect}
+    >
       <div className="item-prefix">
         <FontAwesomeIcon
           icon={[getIcon().type, getIcon().icon]}

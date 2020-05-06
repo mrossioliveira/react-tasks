@@ -22,10 +22,10 @@ export default class ListService {
       const response = await axios.post(URL, { title }, { headers });
 
       dispatch({ type: 'addList', payload: response.data });
-      return true;
+      return response;
     } catch (error) {
       dispatch({ type: 'addListError' });
-      return false;
+      return null;
     }
   }
 
@@ -38,6 +38,7 @@ export default class ListService {
       const URL = `http://localhost:3000/lists/${list.id}`;
       axios.delete(URL, { headers });
     } catch (error) {
+      console.log(error);
       // rollback changes
       dispatch({ type: 'deleteListError', payload: list });
     }

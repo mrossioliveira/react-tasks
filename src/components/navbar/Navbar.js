@@ -44,6 +44,10 @@ const Navbar = () => {
     history.push('/profile');
   };
 
+  const isProfile = () => {
+    return history.location.pathname.indexOf('profile') > 0;
+  };
+
   return (
     <div className="navbar">
       <div className="navbar-header">
@@ -78,7 +82,10 @@ const Navbar = () => {
           ))}
       </div>
       <div className="navbar-spacer"></div>
-      <div className="item" onClick={onProfile}>
+      <div
+        className={isProfile() ? 'item item-selected' : 'item'}
+        onClick={onProfile}
+      >
         <div className="item-prefix">
           <FontAwesomeIcon
             icon="user-astronaut"

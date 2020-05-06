@@ -8,14 +8,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './TaskView.css';
 import VerticalSpacer from '../../components/VerticalSpacer';
 import ListService from '../../services/ListService';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 const TaskView = () => {
   const { id } = useParams();
+  const history = useHistory();
 
   const { dispatch: taskDispatch, taskState } = useContext(TasksContext);
   const { dispatch: listDispatch, listState } = useContext(ListsContext);
 
+  let canDelete = false;
   let titleStyle = 'list-view-title';
   let tasks = [];
   if (id === 'important') {
@@ -31,6 +33,7 @@ const TaskView = () => {
       ),
     ];
   } else {
+    canDelete = true;
     // user list
     tasks = [
       ...taskState.tasks
@@ -39,13 +42,20 @@ const TaskView = () => {
     ];
   }
 
+  const _getList = () =>
+    listState.lists.find((list) => list.id === parseInt(id));
+
   const onListDelete = () => {
+    const list = _getList();
+    console.log(listState.lists);
+    console.log(list);
     if (
       window.confirm(
         'Are you sure you want to delete this list and all its tasks?'
       )
     ) {
-      new ListService().delete(listState.selectedList, listDispatch);
+      new ListService().delete(list, listDispatch);
+      history.push('/tasks/default');
     }
   };
 
@@ -79,7 +89,7 @@ const TaskView = () => {
     >
       <div className="list-view-header">
         <div className={titleStyle}>{getTitle()}</div>
-        {listState.selectedList && listState.selectedList.id > 0 && (
+        {canDelete && (
           <div className="list-view-header-action" onClick={onListDelete}>
             <FontAwesomeIcon
               className="task-edit-sidebar-icon"

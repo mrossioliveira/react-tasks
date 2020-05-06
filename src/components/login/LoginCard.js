@@ -1,10 +1,10 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import { AuthService } from '../../services/AuthService';
 import { useHistory } from 'react-router-dom';
 
 const LoginCard = () => {
   const history = useHistory();
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [username, setUsername] = useState('');
@@ -28,7 +28,14 @@ const LoginCard = () => {
         localStorage.setItem('accessToken', response.data.accessToken);
         localStorage.setItem('refreshToken', response.data.refreshToken);
         setLoading(false);
-        history.push('/tasks/default');
+        const next = history.location.state
+          ? history.location.state.from
+          : undefined;
+        if (next) {
+          history.push(next);
+        } else {
+          history.push('/tasks/default');
+        }
       }
     } catch (error) {
       console.log(error);

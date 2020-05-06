@@ -11,6 +11,7 @@ import Login from './pages/Login';
 import { isAuthenticated } from './services/AuthService';
 import TaskView from './components/task/TaskView';
 import Home from './pages/Home';
+import Profile from './pages/Profile';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -20,34 +21,38 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
         <Component {...props} />
       ) : (
         <Redirect
-          to={{ pathname: '/login', state: { from: props.location } }}
+          to={{
+            pathname: `/login`,
+            state: { from: props.location },
+          }}
         />
       )
     }
   />
 );
 
-// const HomeRoutes = () => (
-//   <Router>
-//     <Switch>
-//       <Route />
-//     </Switch>
-//   </Router>
-// );
-
 const Routes = () => (
   <Router>
     <Switch>
+      {/* Root with redirect logic */}
+      <Route path="/" exact>
+        {isAuthenticated() ? (
+          <Redirect from="/" to="/tasks/default" />
+        ) : (
+          <Redirect from="/" to="/login" />
+        )}
+      </Route>
+
+      {/* Login */}
       <Route path="/login" component={Login} />
+
+      {/* Home routes */}
       <Home>
         <Route
           component={() => (
             <React.Fragment>
               <PrivateRoute path="/tasks/:id" component={TaskView} />
-              <Route
-                path="/profile"
-                render={() => <h1>This is the profile</h1>}
-              />
+              <PrivateRoute path="/profile" key="profile" component={Profile} />
             </React.Fragment>
           )}
         />

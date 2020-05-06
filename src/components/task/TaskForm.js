@@ -1,36 +1,38 @@
 import React, { useState, useContext } from 'react';
 import { TasksContext } from './TasksContext';
-import { ListsContext } from '../list/ListsContext';
 import TaskService from '../../services/TaskService';
+import { useParams } from 'react-router-dom';
 
 const KEYCODE_ENTER = 13;
 const KEYCODE_ESCAPE = 27;
 
 const TaskForm = () => {
+  const { id: slug } = useParams();
   const [title, setTitle] = useState('');
   const { dispatch } = useContext(TasksContext);
-  const { listState } = useContext(ListsContext);
 
   const upadteTitle = (event) => {
     setTitle(event.target.value);
   };
 
+  const getListId = () => {
+    try {
+      return parseInt(slug);
+    } catch (error) {
+      return null;
+    }
+  };
+
   const createTask = (event) => {
-    console.log();
     if (event.keyCode === KEYCODE_ENTER) {
       event.preventDefault();
       if (event.target.value.trim().length > 0) {
-        let listId = null;
-        if (listState.selectedList) {
-          listId = listState.selectedList.id;
-        }
-
         const payload = {
           title: event.target.value,
           description: '',
           status: 'OPEN',
-          important: listId === -1,
-          listId: listId > 0 ? listId : null,
+          important: slug === 'important',
+          listId: getListId(),
         };
 
         const successful = new TaskService().create(payload, dispatch);
@@ -54,6 +56,7 @@ const TaskForm = () => {
     <div style={style}>
       <form>
         <input
+          autoFocus
           className="transparent-input"
           placeholder="New task"
           maxLength="120"
