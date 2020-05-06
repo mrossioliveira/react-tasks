@@ -32,7 +32,7 @@ export default class ListService {
   delete(list, dispatch) {
     try {
       // optimistic update
-      dispatch({ type: 'deleteList' });
+      dispatch({ type: 'deleteList', payload: list.id });
 
       const headers = { Authorization: 'Bearer ' + getToken() };
       const URL = `http://localhost:3000/lists/${list.id}`;

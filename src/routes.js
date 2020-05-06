@@ -1,9 +1,16 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import Home from './components/list/Home';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom';
 import Login from './pages/Login';
+
 import { isAuthenticated } from './services/AuthService';
+import TaskView from './components/task/TaskView';
+import Home from './pages/Home';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -20,13 +27,33 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   />
 );
 
+// const HomeRoutes = () => (
+//   <Router>
+//     <Switch>
+//       <Route />
+//     </Switch>
+//   </Router>
+// );
+
 const Routes = () => (
-  <BrowserRouter>
+  <Router>
     <Switch>
-      <PrivateRoute path="/" exact component={() => <Home />} />
-      <Route path="/login" component={() => <Login />} />
+      <Route path="/login" component={Login} />
+      <Home>
+        <Route
+          component={() => (
+            <React.Fragment>
+              <PrivateRoute path="/tasks/:id" component={TaskView} />
+              <Route
+                path="/profile"
+                render={() => <h1>This is the profile</h1>}
+              />
+            </React.Fragment>
+          )}
+        />
+      </Home>
     </Switch>
-  </BrowserRouter>
+  </Router>
 );
 
 export default Routes;

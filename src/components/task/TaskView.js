@@ -8,37 +8,35 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './TaskView.css';
 import VerticalSpacer from '../../components/VerticalSpacer';
 import ListService from '../../services/ListService';
+import { useParams } from 'react-router-dom';
 
 const TaskView = () => {
+  const { id } = useParams();
+
   const { dispatch: taskDispatch, taskState } = useContext(TasksContext);
   const { dispatch: listDispatch, listState } = useContext(ListsContext);
 
   let titleStyle = 'list-view-title';
-
   let tasks = [];
-  if (listState.selectedList) {
-    if (listState.selectedList.id < 0) {
-      if (listState.selectedList.id === -1) {
-        // important
-        titleStyle = 'list-view-title color-accent';
-        tasks = [...taskState.tasks.filter((task) => task.important)];
-      } else {
-        // tasks
-        titleStyle = 'list-view-title color-primary';
-        tasks = [
-          ...taskState.tasks.filter(
-            (task) => task.list === null || task.list === undefined
-          ),
-        ];
-      }
-    } else {
-      // user list
-      tasks = [
-        ...taskState.tasks
-          .filter((task) => task.list !== null && task.list !== undefined)
-          .filter((task) => task.list.id === listState.selectedList.id),
-      ];
-    }
+  if (id === 'important') {
+    // important
+    titleStyle = 'list-view-title color-accent';
+    tasks = [...taskState.tasks.filter((task) => task.important)];
+  } else if (id === 'default') {
+    // tasks
+    titleStyle = 'list-view-title color-primary';
+    tasks = [
+      ...taskState.tasks.filter(
+        (task) => task.list === null || task.list === undefined
+      ),
+    ];
+  } else {
+    // user list
+    tasks = [
+      ...taskState.tasks
+        .filter((task) => task.list !== null && task.list !== undefined)
+        .filter((task) => task.list.id === parseInt(id)),
+    ];
   }
 
   const onListDelete = () => {
@@ -60,15 +58,27 @@ const TaskView = () => {
     overflowY: 'auto',
   };
 
+  const getTitle = () => {
+    if (id === 'important') {
+      return 'Important';
+    } else if (id === 'default') {
+      return 'Tasks';
+    } else {
+      const list = listState.lists.find((list) => list.id === parseInt(id));
+      if (list) {
+        return list.title;
+      }
+    }
+    return 'Untitled list';
+  };
+
   return (
     <div
       style={containerStyle}
       onClick={() => taskDispatch({ type: 'unselectTask' })}
     >
       <div className="list-view-header">
-        <div className={titleStyle}>
-          {listState.selectedList && listState.selectedList.title}
-        </div>
+        <div className={titleStyle}>{getTitle()}</div>
         {listState.selectedList && listState.selectedList.id > 0 && (
           <div className="list-view-header-action" onClick={onListDelete}>
             <FontAwesomeIcon

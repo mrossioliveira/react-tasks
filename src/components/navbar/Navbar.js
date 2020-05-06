@@ -11,9 +11,10 @@ import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Navbar = () => {
+  const history = useHistory();
+
   const { listState } = useContext(ListsContext);
   const { taskState } = useContext(TasksContext);
-  const history = useHistory();
 
   listState.lists.forEach((list) => {
     if (list.id < 0) {
@@ -39,9 +40,8 @@ const Navbar = () => {
     }
   });
 
-  const onSignOut = () => {
-    localStorage.clear();
-    history.push('/login');
+  const onProfile = () => {
+    history.push('/profile');
   };
 
   return (
@@ -53,6 +53,7 @@ const Navbar = () => {
           maxLength="120"
         />
       </div>
+
       <div className="navbar-items">
         {listState.lists
           .filter((list) => list.id < 0)
@@ -77,13 +78,19 @@ const Navbar = () => {
           ))}
       </div>
       <div className="navbar-spacer"></div>
-
-      <div className="item" onClick={onSignOut}>
+      <div className="item" onClick={onProfile}>
         <div className="item-prefix">
-          <FontAwesomeIcon icon="sign-out-alt" size="lg" />
+          <FontAwesomeIcon
+            icon="user-astronaut"
+            size="lg"
+            className="color-primary"
+          />
         </div>
-        <div className="item-title">Sign out</div>
+        <div className="item-title">
+          <strong>mrossioliveira</strong>
+        </div>
       </div>
+
       <MenuItemDivider />
       <div className="navbar-footer">
         <div className="navbar-footer-form">

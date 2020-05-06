@@ -8,56 +8,31 @@ const TASKS_KEY = -2;
 
 const initialState = {
   lists: [],
-  selectedList: { id: 0 },
 };
 
 function reducer(state, action) {
   switch (action.type) {
     case 'load': {
-      const lists = action.payload;
-
-      // try to find last selected list
-      let selectedList = lists.length > 2 ? lists[2] : lists[1];
-      const lastListId = localStorage.getItem('selectedListId');
-      if (lastListId !== null && lastListId !== undefined) {
-        selectedList = lists.find((list) => list.id === parseInt(lastListId));
-      }
-
       return {
-        lists: lists,
-        selectedList,
+        lists: action.payload,
       };
     }
-
-    case 'selectList':
-      localStorage.setItem('selectedListId', action.payload);
-      return {
-        ...state,
-        selectedList: state.lists.find((list) => list.id === action.payload),
-      };
 
     case 'addList': {
       let updatedLists = [...state.lists];
       updatedLists.push(action.payload);
 
-      return { ...state, lists: updatedLists, selectedList: action.payload };
+      return { ...state, lists: updatedLists };
     }
 
     case 'deleteList': {
       let updatedLists = [...state.lists].filter(
-        (list) => list.id !== state.selectedList.id
-      );
-
-      // update selected list
-      localStorage.setItem(
-        'selectedListId',
-        updatedLists[updatedLists.length - 1].id
+        (list) => list.id !== action.payload
       );
 
       return {
         ...state,
         lists: updatedLists,
-        selectedList: updatedLists[updatedLists.length - 1],
       };
     }
 

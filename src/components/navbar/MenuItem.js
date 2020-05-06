@@ -1,39 +1,50 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import './MenuItem.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { ListsContext } from '../list/ListsContext';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 
 const MenuItem = ({ id, title, counter }) => {
-  const { listState, dispatch } = useContext(ListsContext);
+  const history = useHistory();
 
-  let icon = {
-    type: 'fas',
-    icon: 'tasks',
+  const getIcon = () => {
+    let icon = {
+      type: 'fas',
+      icon: 'tasks',
+      color: 'color-darker',
+    };
+
+    if (id === -1) {
+      icon = { ...icon, icon: 'star', color: 'color-accent' };
+    } else if (id === -2) {
+      icon = { type: 'far', icon: 'circle', color: 'color-primary' };
+    }
+
+    return icon;
   };
-  let iconColor = 'color-darker';
 
-  if (id === -1) {
-    icon = { ...icon, icon: 'star' };
-    iconColor = 'color-accent';
-  } else if (id === -2) {
-    icon = { type: 'far', icon: 'circle' };
-    iconColor = 'color-primary';
-  }
+  const getSlug = () => {
+    if (id === -1) {
+      return 'important';
+    } else if (id === -2) {
+      return 'default';
+    } else {
+      return id;
+    }
+  };
+
+  const onSelect = () => {
+    history.push(`/tasks/${getSlug()}`);
+  };
 
   return (
-    <div
-      className={
-        listState.selectedList.id === id ? 'item item-selected' : 'item'
-      }
-      onClick={() => dispatch({ type: 'selectList', payload: id })}
-    >
+    <div className="item" onClick={onSelect}>
       <div className="item-prefix">
         <FontAwesomeIcon
-          icon={[icon.type, icon.icon]}
+          icon={[getIcon().type, getIcon().icon]}
           size="lg"
-          className={iconColor}
+          className={getIcon().color}
         />
       </div>
       <div className="item-title">{title}</div>
