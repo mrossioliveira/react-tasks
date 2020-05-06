@@ -21,5 +21,5 @@ export const AuthProvider = (props) => {
 };
 
 AuthProvider.propTypes = {
-  children: PropTypes.object,
+  children: PropTypes.array,
 };

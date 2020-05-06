@@ -2,7 +2,7 @@ import React, { useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
-import TOKEN from '../token';
+import TOKEN from '../../token';
 
 const IMPORTANT_KEY = -1;
 const TASKS_KEY = -2;

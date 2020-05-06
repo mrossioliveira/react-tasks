@@ -1,7 +1,6 @@
 import React, { useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
-
-import TasksApi from './TasksApi';
+import TaskService from '../../services/TaskService';
 
 function _getTaskIndex(state, task) {
   const index = state.tasks.map((it) => it.id).indexOf(task.id);
@@ -130,7 +129,7 @@ export const TasksProvider = (props) => {
   useEffect(() => {
     async function loadData() {
       dispatch({ type: 'load' });
-      var api = new TasksApi();
+      var api = new TaskService();
       // get all lists and tasks
       const tasks = await api.find();
 

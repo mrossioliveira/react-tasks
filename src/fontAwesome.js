@@ -14,6 +14,7 @@ import {
   faList,
   faChevronRight,
   faTrashAlt,
+  faSignOutAlt,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -25,5 +26,6 @@ library.add(
   faPlus,
   faList,
   faChevronRight,
-  faTrashAlt
+  faTrashAlt,
+  faSignOutAlt
 );

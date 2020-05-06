@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { TasksContext } from '../task/TasksContext';
 
 import PropTypes from 'prop-types';
-import TasksApi from '../task/TasksApi';
+import TaskService from '../../services/TaskService';
 
 const KEYCODE_ESCAPE = 27;
 
@@ -24,7 +24,7 @@ const TaskEditNotesForm = ({ task }) => {
   const onBlur = (event) => {
     if (event.target.value.trim().length > 0) {
       task.description = event.target.value;
-      new TasksApi().update(task, dispatch);
+      new TaskService().update(task, dispatch);
     }
   };
 

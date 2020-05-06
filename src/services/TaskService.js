@@ -1,8 +1,7 @@
 import axios from 'axios';
-
 import TOKEN from '../token';
 
-export default class TasksApi {
+export default class TaskService {
   async find() {
     // get all lists and tasks
     try {

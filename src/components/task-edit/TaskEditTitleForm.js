@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { TasksContext } from '../task/TasksContext';
 
 import PropTypes from 'prop-types';
-import TasksApi from '../task/TasksApi';
+import TaskService from '../../services/TaskService';
 
 const KEYCODE_ENTER = 13;
 const KEYCODE_ESCAPE = 27;
@@ -21,7 +21,7 @@ const TaskEditTitleForm = ({ task }) => {
       event.preventDefault();
       if (event.target.value.trim().length > 0) {
         task.title = event.target.value;
-        new TasksApi().update(task, dispatch);
+        new TaskService().update(task, dispatch);
       }
     } else if (event.keyCode === KEYCODE_ESCAPE) {
       setTitle(task.title);
@@ -31,7 +31,7 @@ const TaskEditTitleForm = ({ task }) => {
   const onBlur = (event) => {
     if (event.target.value.trim().length > 0) {
       task.title = event.target.value;
-      new TasksApi().update(task, dispatch);
+      new TaskService().update(task, dispatch);
     }
   };
 

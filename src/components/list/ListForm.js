@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { ListsContext } from './ListsContext';
-import ListsApi from './ListsApi';
+import ListService from '../../services/ListService';
 
 const KEYCODE_ENTER = 13;
 const KEYCODE_ESCAPE = 27;
@@ -18,7 +18,10 @@ const ListForm = () => {
     if (event.keyCode === KEYCODE_ENTER) {
       event.preventDefault();
       if (event.target.value.trim().length > 0) {
-        const successful = new ListsApi().create(event.target.value, dispatch);
+        const successful = new ListService().create(
+          event.target.value,
+          dispatch
+        );
         if (successful) {
           setTitle('');
         }

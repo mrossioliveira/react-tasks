@@ -1,8 +1,7 @@
 import axios from 'axios';
-
 import TOKEN from '../token';
 
-export default class ListsApi {
+export default class ListService {
   async find() {
     try {
       const headers = { Authorization: 'Bearer ' + TOKEN };

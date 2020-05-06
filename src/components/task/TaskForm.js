@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { TasksContext } from './TasksContext';
 import { ListsContext } from '../list/ListsContext';
-import TasksApi from './TasksApi';
+import TaskService from '../../services/TaskService';
 
 const KEYCODE_ENTER = 13;
 const KEYCODE_ESCAPE = 27;
@@ -33,7 +33,7 @@ const TaskForm = () => {
           listId: listId > 0 ? listId : null,
         };
 
-        const successful = new TasksApi().create(payload, dispatch);
+        const successful = new TaskService().create(payload, dispatch);
         if (successful) {
           setTitle('');
         }

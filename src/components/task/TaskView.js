@@ -6,8 +6,8 @@ import TaskForm from './TaskForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './TaskView.css';
-import ListsApi from '../list/ListsApi';
-import VerticalSpacer from '../components/VerticalSpacer';
+import VerticalSpacer from '../../components/VerticalSpacer';
+import ListService from '../../services/ListService';
 
 const TaskView = () => {
   const { dispatch: taskDispatch, taskState } = useContext(TasksContext);
@@ -47,7 +47,7 @@ const TaskView = () => {
         'Are you sure you want to delete this list and all its tasks?'
       )
     ) {
-      new ListsApi().delete(listState.selectedList, listDispatch);
+      new ListService().delete(listState.selectedList, listDispatch);
     }
   };
 

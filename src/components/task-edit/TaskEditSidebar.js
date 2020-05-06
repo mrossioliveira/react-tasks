@@ -5,13 +5,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { TasksContext } from '../task/TasksContext';
 import TaskEditTitleForm from './TaskEditTitleForm';
-import TasksApi from '../task/TasksApi';
 import TaskItemStatus from '../task/TaskItemStatus';
 import TaskItemImportant from '../task/TaskItemImportant';
-import VerticalSpacer from '../components/VerticalSpacer';
+import VerticalSpacer from '../../components/VerticalSpacer';
 
 import * as moment from 'moment';
 import TaskEditNotesForm from './TaskEditNotesForm';
+import TaskService from '../../services/TaskService';
 
 const TaskEditSidebar = () => {
   const { dispatch, taskState } = useContext(TasksContext);
@@ -23,7 +23,7 @@ const TaskEditSidebar = () => {
     dispatch({ type: 'deleteTask' });
 
     // database update
-    new TasksApi().delete(taskState.selectedTask, dispatch);
+    new TaskService().delete(taskState.selectedTask, dispatch);
   };
 
   return (

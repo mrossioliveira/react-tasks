@@ -1,38 +1,42 @@
 import React, { useContext } from 'react';
 import { TasksContext } from './TasksContext';
 import PropTypes from 'prop-types';
-import TasksApi from './TasksApi';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import './TaskItemImportant.css';
+import './TaskItemStatus.css';
+import TaskService from '../../services/TaskService';
 
-const TaskItemImportant = ({ task }) => {
+const TaskItemStatus = ({ task }) => {
   const { dispatch } = useContext(TasksContext);
 
   function handleChanges(e) {
     e.stopPropagation();
     
     // optimistic update in the UI
-    dispatch({ type: 'updateImportant', payload: task });
+    dispatch({ type: 'updateStatus', payload: task });
 
     // database update
-    new TasksApi().updateImportant(task, dispatch);
+    new TaskService().updateStatus(task, dispatch);
   }
 
   return (
     <div onClick={handleChanges}>
       <FontAwesomeIcon
         size="lg"
-        icon={[task.important ? 'fas' : 'far', 'star']}
+        icon={
+          task.status === 'DONE' ? ['fas', 'check-circle'] : ['far', 'circle']
+        }
         className={
-          task.important ? 'task-item-important-yes' : 'task-item-important-no'
+          task.status === 'DONE'
+            ? 'task-item-status-yes'
+            : 'task-item-status-no'
         }
       />
     </div>
   );
 };
 
-TaskItemImportant.propTypes = {
+TaskItemStatus.propTypes = {
   task: PropTypes.object.isRequired,
 };
 
-export default TaskItemImportant;
+export default TaskItemStatus;

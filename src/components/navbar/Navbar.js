@@ -7,10 +7,13 @@ import ListForm from '../list/ListForm';
 
 import { ListsContext } from '../list/ListsContext';
 import { TasksContext } from '../task/TasksContext';
+import { useHistory } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Navbar = () => {
   const { listState } = useContext(ListsContext);
   const { taskState } = useContext(TasksContext);
+  const history = useHistory();
 
   listState.lists.forEach((list) => {
     if (list.id < 0) {
@@ -35,6 +38,11 @@ const Navbar = () => {
         .filter((task) => task.status === 'OPEN').length;
     }
   });
+
+  const onSignOut = () => {
+    localStorage.clear();
+    history.push('/login');
+  };
 
   return (
     <div className="navbar">
@@ -69,6 +77,13 @@ const Navbar = () => {
           ))}
       </div>
       <div className="navbar-spacer"></div>
+
+      <div className="item" onClick={onSignOut}>
+        <div className="item-prefix">
+          <FontAwesomeIcon icon="sign-out-alt" size="lg" />
+        </div>
+        <div className="item-title">Sign out</div>
+      </div>
       <MenuItemDivider />
       <div className="navbar-footer">
         <div className="navbar-footer-form">
