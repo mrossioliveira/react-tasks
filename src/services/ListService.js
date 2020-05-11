@@ -1,13 +1,11 @@
-import axios from 'axios';
-import { getToken } from './AuthService';
+import api from './Api';
 
 export default class ListService {
   async find() {
     try {
-      const headers = { Authorization: 'Bearer ' + getToken() };
+      // const headers = { Authorization: 'Bearer ' + getToken() };
       const URL = 'http://localhost:8090/lists';
-
-      const response = await axios.get(URL, { headers });
+      const response = await api.get(URL);
       return response.data;
     } catch (error) {
       console.error(error);
@@ -17,9 +15,8 @@ export default class ListService {
 
   async create(title, dispatch) {
     try {
-      const headers = { Authorization: 'Bearer ' + getToken() };
       const URL = `http://localhost:3000/lists`;
-      const response = await axios.post(URL, { title }, { headers });
+      const response = await api.post(URL, { title });
 
       dispatch({ type: 'addList', payload: response.data });
       return response;
@@ -34,9 +31,8 @@ export default class ListService {
       // optimistic update
       dispatch({ type: 'deleteList', payload: list.id });
 
-      const headers = { Authorization: 'Bearer ' + getToken() };
       const URL = `http://localhost:3000/lists/${list.id}`;
-      axios.delete(URL, { headers });
+      api.delete(URL);
     } catch (error) {
       console.log(error);
       // rollback changes

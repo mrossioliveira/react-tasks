@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { AuthService } from '../../services/AuthService';
 import { useHistory } from 'react-router-dom';
+import api from '../../services/Api';
 
 const LoginCard = () => {
   const history = useHistory();
@@ -26,6 +27,7 @@ const LoginCard = () => {
       const response = await new AuthService().signIn(username, password);
       if (response.status === 201) {
         localStorage.setItem('accessToken', response.data.accessToken);
+        api.defaults.headers.Authorization = `Bearer ${response.data.accessToken}`;
         localStorage.setItem('refreshToken', response.data.refreshToken);
         setLoading(false);
         const next = history.location.state

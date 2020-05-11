@@ -5,7 +5,6 @@ import React from 'react';
 import ReactDOM, { render, unmountComponentAtNode } from 'react-dom';
 import MenuItem from '../MenuItem';
 import renderer from 'react-test-renderer';
-import './../../../fontAwesome';
 
 const IMPORTANT_LIST_ID = -1;
 const DEFAULT_LIST_ID = -2;

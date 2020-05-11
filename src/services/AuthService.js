@@ -1,4 +1,4 @@
-import axios from 'axios';
+import api from './Api';
 import * as jwt from 'jsonwebtoken';
 
 export const getToken = () => localStorage.getItem('accessToken');
@@ -11,6 +11,7 @@ export const isAuthenticated = () => {
   }
 
   if (!isExpired(token)) {
+    api.defaults.headers.Authorization = `Bearer ${token}`;
     return true;
   }
 
@@ -25,7 +26,7 @@ export class AuthService {
   async signIn(username, password) {
     try {
       const URL = `http://localhost:3000/auth/signin`;
-      return await axios.post(URL, { username, password });
+      return await api.post(URL, { username, password });
     } catch (error) {
       if (error.message.indexOf('401') > 0) {
         throw new Error('Invalid Credentials');

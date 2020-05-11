@@ -50,10 +50,10 @@ const Routes = () => (
       <Home>
         <Route
           component={() => (
-            <React.Fragment>
+            <>
               <PrivateRoute path="/tasks/:id" component={TaskView} />
               <PrivateRoute path="/profile" key="profile" component={Profile} />
-            </React.Fragment>
+            </>
           )}
         />
       </Home>

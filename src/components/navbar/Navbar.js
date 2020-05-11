@@ -49,7 +49,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar">
+    <div data-testid="navbar" className="navbar">
       <div className="navbar-header">
         <input
           className="transparent-input"
@@ -58,7 +58,7 @@ const Navbar = () => {
         />
       </div>
 
-      <div className="navbar-items">
+      <div data-testid="navbar-items" className="navbar-items">
         {listState.lists
           .filter((list) => list.id < 0)
           .map((list) => (
