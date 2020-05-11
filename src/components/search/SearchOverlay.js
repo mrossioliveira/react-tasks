@@ -23,8 +23,12 @@ const SearchOverlay = () => {
       {taskState.searchQuery !== null && (
         <div className="search-container ">
           <div className="list-view-title">
-            {_getFilteredTasks().length > 0 ? 'Filter results ' : 'No results '}{' '}
-            for: <span className="color-primary">{taskState.searchQuery}</span>
+            {_getFilteredTasks().length > 0 ? (
+              <span className="color-primary">Found results for</span>
+            ) : (
+              <span className="color-danger">No results for</span>
+            )}{' '}
+            <span>{taskState.searchQuery}</span>
           </div>
           <TaskList tasks={_getFilteredTasks()} />
         </div>
