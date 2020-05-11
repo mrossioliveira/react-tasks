@@ -28,6 +28,7 @@ const LoginCard = () => {
       if (response.status === 201) {
         localStorage.setItem('accessToken', response.data.accessToken);
         localStorage.setItem('refreshToken', response.data.refreshToken);
+        localStorage.setItem('username', response.data.username);
         api.defaults.headers.Authorization = `Bearer ${response.data.accessToken}`;
         setLoading(false);
         const next = history.location.state

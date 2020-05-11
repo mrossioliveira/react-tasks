@@ -34,4 +34,16 @@ export class AuthService {
       throw error;
     }
   }
+
+  async signUp(username, email, password) {
+    try {
+      const URL = `http://localhost:3000/auth/signup`;
+      return await api.post(URL, { username, email, password });
+    } catch (error) {
+      if (error.message.indexOf('409') > 0) {
+        throw new Error('Username/email already exists.');
+      }
+      throw error;
+    }
+  }
 }

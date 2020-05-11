@@ -1,12 +1,11 @@
-.login-container {
+.signup-container {
   display: flex;
-  flex-flow: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
 }
 
-.login-card {
+.signup-card {
   display: flex;
   flex-flow: column;
   padding: 64px;
@@ -14,7 +13,7 @@
   width: 340px;
 }
 
-.login-input-container {
+.signup-input-container {
   display: flex;
   flex-flow: row;
   align-items: center;
@@ -37,12 +36,4 @@
 .app-button:disabled {
   transition: all 500ms ease;
   background-color: #2f3234;
-}
-
-.login-signup-link {
-  font-weight: bold;
-}
-
-.login-signup-link:hover {
-  cursor: pointer;
 }

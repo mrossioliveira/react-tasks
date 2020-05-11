@@ -94,7 +94,7 @@ const Navbar = () => {
           />
         </div>
         <div className="item-title">
-          <strong>mrossioliveira</strong>
+          <strong>{localStorage.getItem('username')}</strong>
         </div>
       </div>
 

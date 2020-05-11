@@ -12,6 +12,7 @@ import { isAuthenticated } from './services/AuthService';
 import TaskView from './components/task/TaskView';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
+import SignUp from './pages/Signup';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -45,6 +46,9 @@ const Routes = () => (
 
       {/* Login */}
       <Route path="/login" component={Login} />
+
+      {/* Signup */}
+      <Route path="/signup" component={SignUp} />
 
       {/* Home routes */}
       <Home>
