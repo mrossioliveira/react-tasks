@@ -4,8 +4,8 @@ import Navbar from '../components/navbar/Navbar';
 import TaskEditSidebar from '../components/task-edit/TaskEditSidebar';
 
 import './Home.css';
-import { TasksProvider } from '../components/task/TasksContext';
-import { ListsProvider } from '../components/list/ListsContext';
+import { TasksProvider } from '../contexts/TasksContext';
+import { ListsProvider } from '../contexts/ListsContext';
 
 export default class Home extends Component {
   render() {

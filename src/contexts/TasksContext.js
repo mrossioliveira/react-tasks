@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
-import TaskService from '../../services/TaskService';
+import TaskService from '../services/TaskService';
 
 function _getTaskIndex(state, task) {
   const index = state.tasks.map((it) => it.id).indexOf(task.id);

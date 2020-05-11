@@ -3,8 +3,8 @@
 
 import React from 'react';
 import ReactDOM, { render, unmountComponentAtNode } from 'react-dom';
-import MenuItem from '../MenuItem';
 import renderer from 'react-test-renderer';
+import MenuItem from '../components/navbar/MenuItem';
 
 const IMPORTANT_LIST_ID = -1;
 const DEFAULT_LIST_ID = -2;

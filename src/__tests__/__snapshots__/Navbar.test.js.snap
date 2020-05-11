@@ -1,0 +1,140 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div
+  class="navbar"
+  data-testid="navbar"
+>
+  <div
+    class="navbar-header"
+  >
+    <input
+      class="transparent-input"
+      maxlength="120"
+      placeholder="Search"
+    />
+  </div>
+  <div
+    class="navbar-items"
+    data-testid="navbar-items"
+  >
+    <div
+      class="item"
+    >
+      <div
+        class="item-prefix"
+      >
+        <svg
+          aria-hidden="true"
+          class="svg-inline--fa fa-star fa-w-18 fa-lg color-accent"
+          data-icon="star"
+          data-prefix="fas"
+          focusable="false"
+          role="img"
+          viewBox="0 0 576 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"
+            fill="currentColor"
+          />
+        </svg>
+      </div>
+      <div
+        class="item-title"
+      >
+        Tasks
+      </div>
+      <div
+        class="item-sufix"
+      />
+    </div>
+    <div
+      class="menu-divider"
+    />
+    <div
+      class="item"
+    >
+      <div
+        class="item-prefix"
+      >
+        <svg
+          aria-hidden="true"
+          class="svg-inline--fa fa-tasks fa-w-16 fa-lg color-darker"
+          data-icon="tasks"
+          data-prefix="fas"
+          focusable="false"
+          role="img"
+          viewBox="0 0 512 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M139.61 35.5a12 12 0 0 0-17 0L58.93 98.81l-22.7-22.12a12 12 0 0 0-17 0L3.53 92.41a12 12 0 0 0 0 17l47.59 47.4a12.78 12.78 0 0 0 17.61 0l15.59-15.62L156.52 69a12.09 12.09 0 0 0 .09-17zm0 159.19a12 12 0 0 0-17 0l-63.68 63.72-22.7-22.1a12 12 0 0 0-17 0L3.53 252a12 12 0 0 0 0 17L51 316.5a12.77 12.77 0 0 0 17.6 0l15.7-15.69 72.2-72.22a12 12 0 0 0 .09-16.9zM64 368c-26.49 0-48.59 21.5-48.59 48S37.53 464 64 464a48 48 0 0 0 0-96zm432 16H208a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h288a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zm0-320H208a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h288a16 16 0 0 0 16-16V80a16 16 0 0 0-16-16zm0 160H208a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h288a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16z"
+            fill="currentColor"
+          />
+        </svg>
+      </div>
+      <div
+        class="item-title"
+      >
+        Test list
+      </div>
+      <div
+        class="item-sufix"
+      />
+    </div>
+  </div>
+  <div
+    class="navbar-spacer"
+  />
+  <div
+    class="item"
+  >
+    <div
+      class="item-prefix"
+    >
+      <svg
+        aria-hidden="true"
+        class="svg-inline--fa fa-user-astronaut fa-w-14 fa-lg color-primary"
+        data-icon="user-astronaut"
+        data-prefix="fas"
+        focusable="false"
+        role="img"
+        viewBox="0 0 448 512"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M64 224h13.5c24.7 56.5 80.9 96 146.5 96s121.8-39.5 146.5-96H384c8.8 0 16-7.2 16-16v-96c0-8.8-7.2-16-16-16h-13.5C345.8 39.5 289.6 0 224 0S102.2 39.5 77.5 96H64c-8.8 0-16 7.2-16 16v96c0 8.8 7.2 16 16 16zm40-88c0-22.1 21.5-40 48-40h144c26.5 0 48 17.9 48 40v24c0 53-43 96-96 96h-48c-53 0-96-43-96-96v-24zm72 72l12-36 36-12-36-12-12-36-12 36-36 12 36 12 12 36zm151.6 113.4C297.7 340.7 262.2 352 224 352s-73.7-11.3-103.6-30.6C52.9 328.5 0 385 0 454.4v9.6c0 26.5 21.5 48 48 48h80v-64c0-17.7 14.3-32 32-32h128c17.7 0 32 14.3 32 32v64h80c26.5 0 48-21.5 48-48v-9.6c0-69.4-52.9-125.9-120.4-133zM272 448c-8.8 0-16 7.2-16 16s7.2 16 16 16 16-7.2 16-16-7.2-16-16-16zm-96 0c-8.8 0-16 7.2-16 16v48h32v-48c0-8.8-7.2-16-16-16z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+    <div
+      class="item-title"
+    >
+      <strong>
+        mrossioliveira
+      </strong>
+    </div>
+  </div>
+  <div
+    class="menu-divider"
+  />
+  <div
+    class="navbar-footer"
+  >
+    <div
+      class="navbar-footer-form"
+    >
+      <form>
+        <input
+          class="transparent-input"
+          maxlength="120"
+          placeholder="New list"
+          value=""
+        />
+      </form>
+    </div>
+  </div>
+</div>
+`;

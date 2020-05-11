@@ -1,11 +1,15 @@
 /*global it, afterEach, expect */
 /*eslint no-undef: "error"*/
 import React from 'react';
-import { render, cleanup, listState } from '../../../test-utils';
-
-import Navbar from '../Navbar';
+import { render, cleanup, listState } from '../utils/test-utils';
+import Navbar from '../components/navbar/Navbar';
 
 afterEach(cleanup);
+
+it('matches snapshot', () => {
+  const { container } = render(<Navbar />);
+  expect(container.firstChild).toMatchSnapshot();
+});
 
 it('should render navbar with items', () => {
   const { getByTestId } = render(<Navbar />);

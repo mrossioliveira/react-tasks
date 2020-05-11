@@ -5,8 +5,8 @@ import MenuItem from './MenuItem';
 import MenuItemDivider from './MenuItemDivider';
 import ListForm from '../list/ListForm';
 
-import { ListsContext } from '../list/ListsContext';
-import { TasksContext } from '../task/TasksContext';
+import { ListsContext } from '../../contexts/ListsContext';
+import { TasksContext } from '../../contexts/TasksContext';
 import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 

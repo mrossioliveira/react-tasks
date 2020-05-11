@@ -3,8 +3,8 @@ import './TaskListItem.css';
 import TaskItemStatus from './TaskItemStatus';
 import TaskItemImportant from './TaskItemImportant';
 import PropTypes from 'prop-types';
-import { ListsContext } from '../list/ListsContext';
-import { TasksContext } from './TasksContext';
+import { ListsContext } from '../../contexts/ListsContext';
+import { TasksContext } from '../../contexts/TasksContext';
 
 const TaskListItem = ({ task }) => {
   const { taskState, dispatch: tasksDispatch } = useContext(TasksContext);

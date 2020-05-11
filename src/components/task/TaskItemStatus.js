@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { TasksContext } from './TasksContext';
+import { TasksContext } from '../../contexts/TasksContext';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './TaskItemStatus.css';

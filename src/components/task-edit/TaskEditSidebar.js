@@ -3,7 +3,7 @@ import './TaskEditSidebar.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { TasksContext } from '../task/TasksContext';
+import { TasksContext } from '../../contexts/TasksContext';
 import TaskEditTitleForm from './TaskEditTitleForm';
 import TaskItemStatus from '../task/TaskItemStatus';
 import TaskItemImportant from '../task/TaskItemImportant';
@@ -35,7 +35,7 @@ const TaskEditSidebar = () => {
       }
     >
       {taskState.selectedTask && (
-        <React.Fragment>
+        <>
           <div className="task-edit-sidebar-header">
             <div className="mr16">
               <TaskItemStatus task={taskState.selectedTask} />
@@ -46,7 +46,7 @@ const TaskEditSidebar = () => {
             </div>
           </div>
           <VerticalSpacer />
-        </React.Fragment>
+        </>
       )}
       {taskState.selectedTask && (
         <div className="p16">

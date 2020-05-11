@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { TasksContext } from './TasksContext';
+import { TasksContext } from '../../contexts/TasksContext';
 import TaskService from '../../services/TaskService';
 import { useParams } from 'react-router-dom';
 

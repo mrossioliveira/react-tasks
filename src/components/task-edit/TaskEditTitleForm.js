@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { TasksContext } from '../task/TasksContext';
+import { TasksContext } from '../../contexts/TasksContext';
 
 import PropTypes from 'prop-types';
 import TaskService from '../../services/TaskService';

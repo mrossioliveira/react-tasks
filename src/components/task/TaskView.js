@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { TasksContext } from './TasksContext';
-import { ListsContext } from '../list/ListsContext';
+import { ListsContext } from '../../contexts/ListsContext';
+import { TasksContext } from '../../contexts/TasksContext';
 import TaskList from './TaskList';
 import TaskForm from './TaskForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

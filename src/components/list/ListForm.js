@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
-import { ListsContext } from './ListsContext';
-import ListService from '../../services/ListService';
 import { useHistory } from 'react-router-dom';
+import ListService from '../../services/ListService';
+import { ListsContext } from '../../contexts/ListsContext';
 
 const KEYCODE_ENTER = 13;
 const KEYCODE_ESCAPE = 27;

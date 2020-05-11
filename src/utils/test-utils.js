@@ -2,9 +2,9 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import { ListsContext } from './components/list/ListsContext';
-import { TasksContext } from './components/task/TasksContext';
 import { MemoryRouter } from 'react-router-dom';
+import { TasksContext } from '../contexts/TasksContext';
+import { ListsContext } from '../contexts/ListsContext';
 
 export const listState = {
   lists: [

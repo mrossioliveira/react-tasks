@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { getToken } from '../../services/AuthService';
+import { getToken } from '../services/AuthService';
 
 const IMPORTANT_KEY = -1;
 const TASKS_KEY = -2;
