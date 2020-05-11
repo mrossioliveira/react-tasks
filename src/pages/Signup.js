@@ -107,7 +107,7 @@ const SignUp = () => {
           className="login-signup-link"
           onClick={() => history.push('/login')}
         >
-          Sign up!
+          Sign in!
         </span>
       </p>
     </div>

@@ -2,6 +2,13 @@ import React, { useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
 import TaskService from '../services/TaskService';
 
+const initialState = {
+  loading: true,
+  tasks: [],
+  searchQuery: null,
+  selectedTask: null,
+};
+
 function _getTaskIndex(state, task) {
   const index = state.tasks.map((it) => it.id).indexOf(task.id);
   return index;
@@ -12,7 +19,11 @@ function reducer(state, action) {
     case 'load':
       return { ...state, loading: true };
     case 'load_success':
-      return { ...state, loading: false, tasks: action.payload };
+      return {
+        ...state,
+        loading: false,
+        tasks: action.payload,
+      };
     case 'load_failure':
       return { ...state, loading: false };
 
@@ -62,7 +73,11 @@ function reducer(state, action) {
         }
       }
 
-      return { ...state, tasks: updatedTasks, selectedTask };
+      return {
+        ...state,
+        tasks: updatedTasks,
+        selectedTask,
+      };
     }
 
     case 'updateStatusError': {
@@ -108,6 +123,13 @@ function reducer(state, action) {
       return { ...state, tasks: updatedTasks, selectedTask: null };
     }
 
+    case 'filterTasks': {
+      return {
+        ...state,
+        searchQuery: action.payload !== '' ? action.payload : null,
+      };
+    }
+
     default:
       throw new Error(`TasksContext: ${action.type} is not a valid action`);
   }
@@ -116,11 +138,6 @@ function reducer(state, action) {
 export const TasksContext = React.createContext();
 
 export const TasksProvider = (props) => {
-  const initialState = {
-    loading: true,
-    tasks: [],
-    selectedTask: null,
-  };
   const [state, dispatch] = useReducer(reducer, initialState);
 
   /**

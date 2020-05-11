@@ -56,7 +56,6 @@ const TaskForm = () => {
     <div style={style}>
       <form>
         <input
-          autoFocus
           className="transparent-input"
           placeholder="New task"
           maxLength="120"

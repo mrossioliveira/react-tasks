@@ -3,12 +3,13 @@ import './TaskListItem.css';
 import TaskItemStatus from './TaskItemStatus';
 import TaskItemImportant from './TaskItemImportant';
 import PropTypes from 'prop-types';
-import { ListsContext } from '../../contexts/ListsContext';
 import { TasksContext } from '../../contexts/TasksContext';
+import { useParams, useHistory } from 'react-router-dom';
 
 const TaskListItem = ({ task }) => {
+  const history = useHistory();
+  const { id } = useParams();
   const { taskState, dispatch: tasksDispatch } = useContext(TasksContext);
-  const { listState, dispatch: listsDispatch } = useContext(ListsContext);
 
   function onTaskSelect(e) {
     e.stopPropagation();
@@ -21,6 +22,11 @@ const TaskListItem = ({ task }) => {
       isSelected = true;
     }
   }
+
+  const handleListSelect = (event) => {
+    event.preventDefault();
+    history.push(`/tasks/${task.list.id}`);
+  };
 
   return (
     <div
@@ -38,15 +44,10 @@ const TaskListItem = ({ task }) => {
         </span>
         <br />
 
-        {listState.selectedList && listState.selectedList.id === -1 ? (
+        {id === 'important' || taskState.searchQuery !== null ? (
           <small
             className="task-list-item-list-selector color-darker"
-            onClick={() =>
-              listsDispatch({
-                type: 'selectList',
-                payload: task.list ? task.list.id : -2,
-              })
-            }
+            onClick={handleListSelect}
           >
             {task.list ? task.list.title : 'Tasks'}
           </small>

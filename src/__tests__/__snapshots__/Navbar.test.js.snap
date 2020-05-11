@@ -112,9 +112,7 @@ exports[`matches snapshot 1`] = `
     <div
       class="item-title"
     >
-      <strong>
-        mrossioliveira
-      </strong>
+      <strong />
     </div>
   </div>
   <div

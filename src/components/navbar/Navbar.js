@@ -9,6 +9,7 @@ import { ListsContext } from '../../contexts/ListsContext';
 import { TasksContext } from '../../contexts/TasksContext';
 import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import TaskSearchForm from '../task/TaskSearchForm';
 
 const Navbar = () => {
   const history = useHistory();
@@ -51,11 +52,7 @@ const Navbar = () => {
   return (
     <div data-testid="navbar" className="navbar">
       <div className="navbar-header">
-        <input
-          className="transparent-input"
-          placeholder="Search"
-          maxLength="120"
-        />
+        <TaskSearchForm />
       </div>
 
       <div data-testid="navbar-items" className="navbar-items">

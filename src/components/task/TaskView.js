@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useContext } from 'react';
 import { ListsContext } from '../../contexts/ListsContext';
 import { TasksContext } from '../../contexts/TasksContext';
@@ -9,6 +10,7 @@ import './TaskView.css';
 import VerticalSpacer from '../../components/VerticalSpacer';
 import ListService from '../../services/ListService';
 import { useParams, useHistory } from 'react-router-dom';
+import SearchOverlay from '../search/SearchOverlay';
 
 const TaskView = () => {
   const { id } = useParams();
@@ -43,12 +45,21 @@ const TaskView = () => {
   }
 
   const _getList = () =>
-    listState.lists.find((list) => list.id === parseInt(id));
+    listState.lists.find((list) => list.id === parseInt(_mapId(id)));
+
+  const _mapId = (id) => {
+    switch (id) {
+      case 'default':
+        return -2;
+      case 'important':
+        return -1;
+      default:
+        return id;
+    }
+  };
 
   const onListDelete = () => {
     const list = _getList();
-    console.log(listState.lists);
-    console.log(list);
     if (
       window.confirm(
         'Are you sure you want to delete this list and all its tasks?'
@@ -69,17 +80,10 @@ const TaskView = () => {
   };
 
   const getTitle = () => {
-    if (id === 'important') {
-      return 'Important';
-    } else if (id === 'default') {
-      return 'Tasks';
-    } else {
-      const list = listState.lists.find((list) => list.id === parseInt(id));
-      if (list) {
-        return list.title;
-      }
+    const list = _getList();
+    if (list) {
+      return list.title;
     }
-    return 'Untitled list';
   };
 
   return (
@@ -87,27 +91,32 @@ const TaskView = () => {
       style={containerStyle}
       onClick={() => taskDispatch({ type: 'unselectTask' })}
     >
-      <div className="list-view-header">
-        <div className={titleStyle}>{getTitle()}</div>
-        {canDelete && (
-          <div className="list-view-header-action" onClick={onListDelete}>
-            <FontAwesomeIcon
-              className="task-edit-sidebar-icon"
-              icon="trash-alt"
-            />
+      <SearchOverlay />
+      {taskState.searchQuery === null && (
+        <>
+          <div className="list-view-header">
+            <div className={titleStyle}>{getTitle()}</div>
+            {canDelete && (
+              <div className="list-view-header-action" onClick={onListDelete}>
+                <FontAwesomeIcon
+                  className="task-edit-sidebar-icon"
+                  icon="trash-alt"
+                />
+              </div>
+            )}
           </div>
-        )}
-      </div>
-      {taskState.loading ? (
-        <div>...loading</div>
-      ) : (
-        <TaskList tasks={tasks} list={listState.selectedList} />
+          {taskState.loading ? (
+            <div>...loading</div>
+          ) : (
+            <TaskList tasks={tasks} />
+          )}
+          <div className="flex-spacer"></div>
+          <div className="mb-16">
+            <VerticalSpacer />
+          </div>
+          <TaskForm />
+        </>
       )}
-      <div className="flex-spacer"></div>
-      <div className="mb-16">
-        <VerticalSpacer />
-      </div>
-      <TaskForm />
     </div>
   );
 };
