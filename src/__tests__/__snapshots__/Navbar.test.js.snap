@@ -8,11 +8,14 @@ exports[`matches snapshot 1`] = `
   <div
     class="navbar-header"
   >
-    <input
-      class="transparent-input"
-      maxlength="120"
-      placeholder="Search"
-    />
+    <form>
+      <input
+        class="transparent-input"
+        maxlength="120"
+        placeholder="Search tasks"
+        value=""
+      />
+    </form>
   </div>
   <div
     class="navbar-items"
