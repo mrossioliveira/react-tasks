@@ -11,6 +11,7 @@ import VerticalSpacer from '../../components/VerticalSpacer';
 import ListService from '../../services/ListService';
 import { useParams, useHistory } from 'react-router-dom';
 import SearchOverlay from '../search/SearchOverlay';
+import EditableInput from '../list/EditableTitle';
 
 const TaskView = () => {
   const { id } = useParams();
@@ -95,7 +96,9 @@ const TaskView = () => {
       {taskState.searchQuery === null && (
         <>
           <div className="list-view-header">
-            <div className={titleStyle}>{getTitle()}</div>
+            <div className={titleStyle}>
+              {canDelete ? <EditableInput list={_getList()} /> : getTitle()}
+            </div>
             {canDelete && (
               <div className="list-view-header-action" onClick={onListDelete}>
                 <FontAwesomeIcon

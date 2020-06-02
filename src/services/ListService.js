@@ -39,4 +39,18 @@ export default class ListService {
       dispatch({ type: 'deleteListError', payload: list });
     }
   }
+
+  async update(list, dispatch) {
+    try {
+      // optimistic update
+      dispatch({ type: 'updateList', payload: list });
+
+      const URL = `http://localhost:3000/lists/${list.id}`;
+      api.patch(URL, { title: list.title });
+    } catch (error) {
+      console.log(error);
+      // rollback changes
+      dispatch({ type: 'updateListError', payload: list });
+    }
+  }
 }

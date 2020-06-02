@@ -26,8 +26,8 @@ form {
   background: transparent !important;
   border: transparent !important;
   height: 24px;
-  color: whitesmoke;
-  font-size: 12pt;
+  color: inherit;
+  font-size: inherit;
 }
 
 .transparent-input:focus {
@@ -35,6 +35,7 @@ form {
 }
 
 .list-view-title {
+  width: 100%;
   font-size: 20px;
   font-weight: 300;
   margin-bottom: 16px;

@@ -10,6 +10,10 @@ const initialState = {
   lists: [],
 };
 
+function _getListIndex(state, list) {
+  return state.lists.map((it) => it.id).indexOf(list.id);
+}
+
 function reducer(state, action) {
   switch (action.type) {
     case 'load': {
@@ -28,6 +32,20 @@ function reducer(state, action) {
     case 'deleteList': {
       let updatedLists = [...state.lists].filter(
         (list) => list.id !== action.payload
+      );
+
+      return {
+        ...state,
+        lists: updatedLists,
+      };
+    }
+
+    case 'updateList': {
+      let updatedLists = [...state.lists];
+      updatedLists.splice(
+        _getListIndex(state, action.payload),
+        1,
+        action.payload
       );
 
       return {

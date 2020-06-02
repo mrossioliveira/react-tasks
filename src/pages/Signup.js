@@ -60,7 +60,7 @@ const SignUp = () => {
   return (
     <div className="login-container bg-darker">
       <div className="signup-card bg-dark">
-        <h2>.sign up!</h2>
+        <h2>sign up!</h2>
         <form onSubmit={(event) => onFormSubmit(event)}>
           <div className="signup-input-container">
             <input
