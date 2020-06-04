@@ -37,7 +37,7 @@ function reducer(state, action) {
       updatedTasks.splice(_getTaskIndex(state, action.payload), 1, updatedTask);
 
       let selectedTask = state.selectedTask;
-      if (state.selectedTask) {
+      if (selectedTask) {
         if (state.selectedTask.id === action.payload.id) {
           selectedTask = updatedTask;
         }
