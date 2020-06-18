@@ -25,7 +25,7 @@ const isExpired = (token) => {
 export class AuthService {
   async signIn(username, password) {
     try {
-      const URL = `http://localhost:3000/auth/signin`;
+      const URL = `/auth/signin`;
       return await api.post(URL, { username, password });
     } catch (error) {
       if (error.message.indexOf('401') > 0) {
@@ -37,7 +37,7 @@ export class AuthService {
 
   async signUp(username, email, password) {
     try {
-      const URL = `http://localhost:3000/auth/signup`;
+      const URL = `/auth/signup`;
       return await api.post(URL, { username, email, password });
     } catch (error) {
       if (error.message.indexOf('409') > 0) {

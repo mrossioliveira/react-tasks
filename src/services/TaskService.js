@@ -4,7 +4,7 @@ export default class TaskService {
   async find() {
     // get all lists and tasks
     try {
-      const URL = 'http://localhost:3000/tasks';
+      const URL = '/tasks';
 
       // custom user lists
       const response = await api.get(URL);
@@ -17,7 +17,7 @@ export default class TaskService {
 
   async create(task, dispatch) {
     try {
-      const URL = `http://localhost:3000/tasks`;
+      const URL = `/tasks`;
       const response = await api.post(URL, task);
 
       dispatch({ type: 'addTask', payload: response.data });
@@ -32,7 +32,7 @@ export default class TaskService {
     try {
       dispatch({ type: 'updateTask', payload: task });
 
-      const URL = `http://localhost:3000/tasks/${task.id}`;
+      const URL = `/tasks/${task.id}`;
       await api.patch(URL, task);
     } catch (error) {
       // rollback to unchanged task
@@ -42,7 +42,7 @@ export default class TaskService {
 
   async updateImportant(task, dispatch) {
     try {
-      const URL = `http://localhost:3000/tasks/${task.id}/important`;
+      const URL = `/tasks/${task.id}/important`;
       const payload = {
         important: task.important ? 'false' : 'true',
       };
@@ -55,7 +55,7 @@ export default class TaskService {
 
   async updateStatus(task, dispatch) {
     try {
-      const URL = `http://localhost:3000/tasks/${task.id}/status`;
+      const URL = `/tasks/${task.id}/status`;
       const payload = {
         status: task.status === 'OPEN' ? 'DONE' : 'OPEN',
       };
@@ -68,7 +68,7 @@ export default class TaskService {
 
   delete(task, dispatch) {
     try {
-      const URL = `http://localhost:3000/tasks/${task.id}`;
+      const URL = `/tasks/${task.id}`;
 
       api.delete(URL);
     } catch (error) {

@@ -4,7 +4,7 @@ export default class ListService {
   async find() {
     try {
       // const headers = { Authorization: 'Bearer ' + getToken() };
-      const URL = 'http://localhost:3000/lists';
+      const URL = '/lists';
       const response = await api.get(URL);
       return response.data;
     } catch (error) {
@@ -15,7 +15,7 @@ export default class ListService {
 
   async create(title, dispatch) {
     try {
-      const URL = `http://localhost:3000/lists`;
+      const URL = `/lists`;
       const response = await api.post(URL, { title });
 
       dispatch({ type: 'addList', payload: response.data });
@@ -31,7 +31,7 @@ export default class ListService {
       // optimistic update
       dispatch({ type: 'deleteList', payload: list.id });
 
-      const URL = `http://localhost:3000/lists/${list.id}`;
+      const URL = `/lists/${list.id}`;
       api.delete(URL);
     } catch (error) {
       console.log(error);
@@ -45,7 +45,7 @@ export default class ListService {
       // optimistic update
       dispatch({ type: 'updateList', payload: list });
 
-      const URL = `http://localhost:3000/lists/${list.id}`;
+      const URL = `/lists/${list.id}`;
       api.patch(URL, { title: list.title });
     } catch (error) {
       console.log(error);
