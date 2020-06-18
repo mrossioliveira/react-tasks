@@ -4,7 +4,7 @@ export default class ListService {
   async find() {
     try {
       // const headers = { Authorization: 'Bearer ' + getToken() };
-      const URL = 'http://localhost:8090/lists';
+      const URL = 'http://localhost:3000/lists';
       const response = await api.get(URL);
       return response.data;
     } catch (error) {

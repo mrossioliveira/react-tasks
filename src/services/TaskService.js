@@ -4,7 +4,7 @@ export default class TaskService {
   async find() {
     // get all lists and tasks
     try {
-      const URL = 'http://localhost:8090/tasks';
+      const URL = 'http://localhost:3000/tasks';
 
       // custom user lists
       const response = await api.get(URL);

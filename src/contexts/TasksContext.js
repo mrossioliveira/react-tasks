@@ -22,7 +22,7 @@ function reducer(state, action) {
       return {
         ...state,
         loading: false,
-        tasks: action.payload,
+        tasks: action.payload || [],
       };
     case 'load_failure':
       return { ...state, loading: false };

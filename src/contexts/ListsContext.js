@@ -74,7 +74,7 @@ export const ListsProvider = (props) => {
         const headers = {
           Authorization: 'Bearer ' + getToken(),
         };
-        const LISTS_URL = 'http://localhost:8090/lists';
+        const LISTS_URL = 'http://localhost:3000/lists';
 
         // system lists (important and tasks)
         let lists = [
