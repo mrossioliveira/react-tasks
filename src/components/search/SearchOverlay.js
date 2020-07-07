@@ -6,6 +6,8 @@ import TaskList from '../task/TaskList';
 const SearchOverlay = () => {
   const { taskState } = useContext(TasksContext);
 
+  console.log(taskState);
+
   const _getFilteredTasks = () => {
     if (taskState.searchQuery !== null) {
       return taskState.tasks.filter(

@@ -11,6 +11,8 @@ const TaskListItem = ({ task }) => {
   const { id } = useParams();
   const { taskState, dispatch: tasksDispatch } = useContext(TasksContext);
 
+  console.log(task);
+
   function onTaskSelect(e) {
     e.stopPropagation();
     tasksDispatch({ type: 'selectTask', payload: task });
@@ -25,7 +27,12 @@ const TaskListItem = ({ task }) => {
 
   const handleListSelect = (event) => {
     event.preventDefault();
-    history.push(`/tasks/${task.list.id}`);
+
+    if (task.list !== null) {
+      history.push(`/tasks/${task.list.id}`);
+    } else {
+      history.push(`/tasks/default`);
+    }
   };
 
   return (
